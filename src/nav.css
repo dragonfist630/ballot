@@ -1,0 +1,22 @@
+.header {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3em;
+  line-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  color: white!important;
+}
+.img-size {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #0029fe;
+  border-radius: 1.5rem;
+  margin-right: 0.5rem;
+}
+.display {
+  justify-content: flex-start !important;
+  margin: 0rem 0rem 0rem 0rem;
+}
