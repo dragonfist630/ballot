@@ -4,40 +4,28 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import { useState } from "react";
 
-
-var Reg = () => {
+var Login = () => {
   const [userreg, updateuserreg] = useState({
-    f_name: "",
-    l_name: "",
     email: "",
     password: "",
-    c_password: "",
   });
-  const [records, updaterecord] = useState([]);
 
   const handleInput = (e) => {
     //checking of imput is here to pe written
     const name = e.target.name;
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
-    console.log(userreg);
+    // console.log(userreg);
   };
   const onsubmit = (e) => {
     e.preventDefault();
     //validation part is here to be written
-    const pass_check = userreg.password === userreg.c_password ? true : false;
-    if (pass_check) {
-      const record_with_id = { ...userreg, id: new Date().getTime().toString() };
-      updaterecord([...records, record_with_id]);
-      updateuserreg({ f_name: "", l_name: "", email: "", password: "", c_password: "" });
-    } else {
-      alert("Both the passwords doesn't match");
-    }
+    updateuserreg({ email: "", password: "" });
+    // console.log(userreg);
   };
   return (
-    <Container sx={{ width: "50%", height: "65%" }} className="reg">
-      
-      <p>Start for free</p>
+    <Container sx={{ width: "50%", height: "65%" }} className="reg" style={{ float: "right" }}>
+      <p>Welcome! Again</p>
       <Typography
         variant="h3"
         sx={{
@@ -47,7 +35,7 @@ var Reg = () => {
           fontWeight: "700",
         }}
       >
-        Create new account
+        Login
         <Typography
           variant="span"
           sx={{
@@ -71,35 +59,26 @@ var Reg = () => {
           lineHeight: "3.25rem",
         }}
       >
-        Already A Memeber?
+        New here?
         <Link href="#" sx={{ color: "#0029FE", textDecoration: "none" }}>
           {" "}
-          LogIn
+          Register account
         </Link>
       </Typography>
       <form action="#" onSubmit={onsubmit}>
-        <div className="Initals">
-          <input type="text" placeholder="First name" required autoComplete="off" value={userreg.f_name} onChange={handleInput} name="f_name" />
-          <input type="text" placeholder="Last name" required autoComplete="off" value={userreg.l_name} onChange={handleInput} name="l_name" />
-        </div>
-        <div className="email-to-password">
+        <div className="email-to-password" id="login_input">
           <input type="email" placeholder="Email" autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
           <input type="password" placeholder="Password" required autoComplete="off" value={userreg.password} onChange={handleInput} name="password" />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            autoComplete="off"
-            required
-            value={userreg.c_password}
-            onChange={handleInput}
-            name="c_password"
-          />
+          <Link href="#" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
+            {" "}
+            Forget Password?
+          </Link>
         </div>
         <button type="submit" id="reg_submit">
-          Create account
+          LogIn
         </button>
       </form>
     </Container>
   );
 };
-export default Reg;
+export default Login;

@@ -1,0 +1,84 @@
+.reg {
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+}
+p {
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: start;
+  margin: 0rem;
+  width: 41.231%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.25rem;
+  line-height: 3.375rem;
+}
+span {
+  font-size: 1rem;
+  color: white;
+}
+form {
+  position: relative;
+  top: 1rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Initals {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+}
+input {
+  width: 45%;
+  height: 5%;
+  background: rgb(165, 165, 165, 0.4);
+  background-blend-mode: hard-light;
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+input::placeholder {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+.email-to-password {
+  display: flex;
+  flex-direction: column;
+}
+.email-to-password input {
+  width: 100%;
+  margin-bottom: 1.8rem;
+}
+#reg_submit {
+  width: 290px;
+  height: 68px;
+  background: #0029fe;
+  background-blend-mode: hard-light;
+  border-radius: 50px;
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  color: white;
+  align-self: center;
+}
+#login_input{
+    margin-bottom: 3rem;
+}
+#login_input input{
+height: 5.75rem;
+}
