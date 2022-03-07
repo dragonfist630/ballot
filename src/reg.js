@@ -6,6 +6,7 @@ import { useState } from "react";
 
 
 var Reg = () => {
+  // const  [c_password_error, updateC_password_error] = useState("");
   const [userreg, updateuserreg] = useState({
     f_name: "",
     l_name: "",
@@ -20,7 +21,7 @@ var Reg = () => {
     const name = e.target.name;
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
-    console.log(userreg);
+    // console.log(userreg);
   };
   const onsubmit = (e) => {
     e.preventDefault();
@@ -30,8 +31,11 @@ var Reg = () => {
       const record_with_id = { ...userreg, id: new Date().getTime().toString() };
       updaterecord([...records, record_with_id]);
       updateuserreg({ f_name: "", l_name: "", email: "", password: "", c_password: "" });
+      window.location.href = "login";
     } else {
-      alert("Both the passwords doesn't match");
+      // var temp = "border:'2px solid red'";
+      // updateC_password_error(temp);
+      alert("Your confirm password didn't match your the password you have entered Above.");
     }
   };
   return (
@@ -72,7 +76,7 @@ var Reg = () => {
         }}
       >
         Already A Memeber?
-        <Link href="#" sx={{ color: "#0029FE", textDecoration: "none" }}>
+        <Link href="login" sx={{ color: "#0029FE", textDecoration: "none" }}>
           {" "}
           LogIn
         </Link>
@@ -83,7 +87,7 @@ var Reg = () => {
           <input type="text" placeholder="Last name" required autoComplete="off" value={userreg.l_name} onChange={handleInput} name="l_name" />
         </div>
         <div className="email-to-password">
-          <input type="email" placeholder="Email" autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
+          <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
           <input type="password" placeholder="Password" required autoComplete="off" value={userreg.password} onChange={handleInput} name="password" />
           <input
             type="password"
@@ -93,6 +97,7 @@ var Reg = () => {
             value={userreg.c_password}
             onChange={handleInput}
             name="c_password"
+            // style={{c_password_error}}
           />
         </div>
         <button type="submit" id="reg_submit">

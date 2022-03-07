@@ -21,7 +21,7 @@ var Login = () => {
     e.preventDefault();
     //validation part is here to be written
     updateuserreg({ email: "", password: "" });
-    // console.log(userreg);
+    console.log(userreg);
   };
   return (
     <Container className="reg lgin" >
@@ -60,7 +60,7 @@ var Login = () => {
         }}
       >
         New here?
-        <Link href="#" sx={{ color: "#0029FE", textDecoration: "none" }}>
+        <Link href="/" sx={{ color: "#0029FE", textDecoration: "none" }}>
           {" "}
           Register account
         </Link>

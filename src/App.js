@@ -1,6 +1,8 @@
 import "./App.css";
 import Nav from "./nav";
 import Reg from "./reg";
+import {Routes, Route} from "react-router-dom";
+import Login from "./Login";
 // import Login from "./Login";
 // import Test from "./test";
 
@@ -10,10 +12,11 @@ function App() {
   return (
     <div className="background">
       <Nav />
-      <div  className="container_wrap">
-      <Reg />
-      {/* <Login/> */}
-      </div>
+      <Routes>
+      <Route path="/" element={<Reg/>}/>
+      <Route path="/login" element={<Login/>}/>
+      
+      </Routes>
     </div>
   );
 }
