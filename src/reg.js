@@ -35,7 +35,7 @@ var Reg = () => {
     }
   };
   return (
-    <Container sx={{ width: "50%", height: "65%" }} className="reg">
+    <Container className="reg">
       
       <p>Start for free</p>
       <Typography

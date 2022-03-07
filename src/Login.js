@@ -24,7 +24,7 @@ var Login = () => {
     // console.log(userreg);
   };
   return (
-    <Container sx={{ width: "50%", height: "65%" }} className="reg" style={{ float: "right" }}>
+    <Container className="reg lgin" >
       <p>Welcome! Again</p>
       <Typography
         variant="h3"

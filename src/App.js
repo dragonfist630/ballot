@@ -10,10 +10,10 @@ function App() {
   return (
     <div className="background">
       <Nav />
-      
+      <div  className="container_wrap">
       <Reg />
       {/* <Login/> */}
-     
+      </div>
     </div>
   );
 }
