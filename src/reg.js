@@ -1,19 +1,19 @@
 import "./reg.css";
+import Button from "./UI/Button";
+import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import { useState } from "react";
-
 
 var Reg = () => {
   // const  [c_password_error, updateC_password_error] = useState("");
   const [userreg, updateuserreg] = useState({
-    f_name: "",
-    l_name: "",
-    email: "",
+    fistName: "",
+    lastName: "",
+    emailId: "",
     password: "",
     c_password: "",
   });
+  
   const [records, updaterecord] = useState([]);
 
   const handleInput = (e) => {
@@ -30,7 +30,7 @@ var Reg = () => {
     if (pass_check) {
       const record_with_id = { ...userreg, id: new Date().getTime().toString() };
       updaterecord([...records, record_with_id]);
-      updateuserreg({ f_name: "", l_name: "", email: "", password: "", c_password: "" });
+      updateuserreg({ firstName: "", lastName: "", emailId: "", password: "", c_password: "" });
       window.location.href = "login";
     } else {
       // var temp = "border:'2px solid red'";
@@ -40,54 +40,14 @@ var Reg = () => {
   };
   return (
     <Container className="reg">
-      
-      <p>Start for free</p>
-      <Typography
-        variant="h3"
-        sx={{
-          fontFamily: "Poppins",
-          fontSize: "4.5rem",
-          color: "white",
-          fontWeight: "700",
-        }}
-      >
-        Create new account
-        <Typography
-          variant="span"
-          sx={{
-            fontFamily: "Poppins",
-            fontSize: "6rem",
-            fontWeight: "700",
-            color: "#0029FE",
-            lineHeight: "2.25rem",
-          }}
-        >
-          .
-        </Typography>
-      </Typography>
-      <Typography
-        variant="span"
-        sx={{
-          fontFamily: "Poppins",
-          fontSize: "1.5rem",
-          fontWeight: "light",
-          color: "white",
-          lineHeight: "3.25rem",
-        }}
-      >
-        Already A Memeber?
-        <Link href="login" sx={{ color: "#0029FE", textDecoration: "none" }}>
-          {" "}
-          LogIn
-        </Link>
-      </Typography>
+      <Upperpart top_heading="Start for free" heading="Create new account" bottom_heading="Already a member?" link="LogIn" href="login" />
       <form action="#" onSubmit={onsubmit}>
         <div className="Initals">
-          <input type="text" placeholder="First name" required autoComplete="off" value={userreg.f_name} onChange={handleInput} name="f_name" />
-          <input type="text" placeholder="Last name" required autoComplete="off" value={userreg.l_name} onChange={handleInput} name="l_name" />
+          <input type="text" placeholder="First name" required autoComplete="off" value={userreg.firstName} onChange={handleInput} name="firstName" />
+          <input type="text" placeholder="Last name" required autoComplete="off" value={userreg.lastName} onChange={handleInput} name="lastName" />
         </div>
         <div className="email-to-password">
-          <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
+          <input type="email" placeholder="Email" required autoComplete="off" value={userreg.emailId} onChange={handleInput} name="emailId" />
           <input type="password" placeholder="Password" required autoComplete="off" value={userreg.password} onChange={handleInput} name="password" />
           <input
             type="password"
@@ -100,9 +60,7 @@ var Reg = () => {
             // style={{c_password_error}}
           />
         </div>
-        <button type="submit" id="reg_submit">
-          Create account
-        </button>
+        <Button text="Create account" />
       </form>
     </Container>
   );
