@@ -1,0 +1,94 @@
+.Ahomepage_form {
+  left: 10rem;
+}
+.Inner_container {
+  width: 100%;
+  padding: 0px !important;
+}
+#Outer_container {
+  /* background-color: aqua; */
+  padding: 0px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+.inner_form {
+  width: 80%;
+  background-color: white;
+  padding: 2rem;
+  float: right;
+  margin-bottom: 1rem;
+}
+.inner_form h3 {
+  font-weight: 600;
+}
+.p_inline_bar {
+  /* for inline progress bar */
+  height: 6px !important;
+  border-radius: 2vh !important;
+  background-color: white !important;
+  margin-left: 2.5rem;
+  margin-bottom: 1rem;
+}
+.percent_name_wrap span {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  margin-right: 0.7rem;
+  color: black;
+  font-weight: 500;
+}
+.percent_name_wrap {
+  width: 21%;
+  display: flex;
+  flex-direction: row;
+}
+.inline-progress-bar {
+  color: #40e0d0;
+  border-radius: 1rem;
+}
+.bottom_form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 2.25rem;
+}
+.usersPic_voteCount{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 22%;
+}
+.EditRemoveIcon_wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.EditRemoveIcon_wrap img{
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+}
+.usersPic img{
+    border-radius: 1rem;
+    border: 2px solid white;
+}
+.usersPic img:nth-child(2){
+    position: absolute;
+    left: 1.9rem;
+    /* bottom: 2rem; */
+}
+.usersPic img:nth-child(3){
+    position: absolute;
+    left: 3rem;
+    /* bottom: 1.7rem; */
+}
+.usersPic img:nth-child(1){
+    position: relative;
+    left: -1.2rem;
+    /* bottom: .4rem; */
+}

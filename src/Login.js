@@ -1,5 +1,6 @@
 import "./reg.css";
 import Button from "./UI/Button";
+import Nav from "./nav";
 import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
@@ -25,6 +26,8 @@ var Login = () => {
     console.log(userreg);
   };
   return (
+    <>
+    <Nav />
     <Container className="reg lgin">
       <Upperpart top_heading="Welcome! Again" heading="Login" bottom_heading="New here?" link="Register account" href="/" />
       <form action="#" onSubmit={onsubmit}>
@@ -36,9 +39,10 @@ var Login = () => {
             Forget Password?
           </Link>
         </div>
-        <Button text="LogIn" />
+        <Button text="LogIn" display="none"/>
       </form>
     </Container>
+    </>
   );
 };
 export default Login;

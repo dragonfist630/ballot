@@ -1,5 +1,6 @@
 import "./reg.css";
 import Button from "./UI/Button";
+import Nav from "./nav";
 import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
 import { useState } from "react";
@@ -39,6 +40,8 @@ var Reg = () => {
     }
   };
   return (
+    <>
+    <Nav />
     <Container className="reg">
       <Upperpart top_heading="Start for free" heading="Create new account" bottom_heading="Already a member?" link="LogIn" href="login" />
       <form action="#" onSubmit={onsubmit}>
@@ -60,9 +63,10 @@ var Reg = () => {
             // style={{c_password_error}}
           />
         </div>
-        <Button text="Create account" />
+        <Button text="Create account" display="none"/>
       </form>
     </Container>
+    </>
   );
 };
 export default Reg;

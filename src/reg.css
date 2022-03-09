@@ -72,7 +72,7 @@ input::placeholder {
   flex-wrap: wrap;
 }
 
-#reg_submit {
+/* #reg_submit {
   width: 18.125rem;
   height: 4.25rem;
   background: #0029fe;
@@ -86,7 +86,7 @@ input::placeholder {
   line-height: 2.25rem;
   color: white;
   align-self: center;
-}
+} */
 #login_input {
   margin-bottom: 3rem;
 }
