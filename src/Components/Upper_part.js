@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
+// import NavLink from "@mui/material/Link";
+import { Link } from "react-router-dom";
 
 const Upperpart = (props) => {
   return (
@@ -40,9 +41,9 @@ const Upperpart = (props) => {
         }}
       >
         {props.bottom_heading}
-        <Link href={props.href} sx={{ color: "#0029FE", textDecoration: "none" }}>
+        <Link  to={props.href} sx={{ color: "#0029FE"}} style={{ textDecoration: 'none' }}>
           {" "}
-         {props.link}
+         {props.link} 
         </Link>
       </Typography>
     </>

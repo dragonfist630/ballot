@@ -2,16 +2,18 @@ import "./framestyle.css";
 import "../Ahomepage.css";
 // import  Options  from "./Options";
 import Button from "../UI/Button";
-import ProgressBar from "react-bootstrap/ProgressBar";
+// import ProgressBar from "react-bootstrap/ProgressBar";
 import Container from "@mui/material/Container";
 export const Frame = ({ vote, setVote }) => {
-  //
   var sum = 0;
   const options = Object.entries(vote.options);
   options.forEach((element) => {
     sum = sum + element[1];
   });
   console.log(sum);
+  var handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   return (
     <Container className="single-frame Ahomepage_form inner_form">
@@ -20,7 +22,7 @@ export const Frame = ({ vote, setVote }) => {
       {options.map((opt) => {
         return (
           <>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "row" }}>
               {vote.isUserVoted ? (
                 <>
                   <h5 className="frame-query" style={{ fontSize: "24px", marginRight: "40px" }}>
@@ -35,7 +37,7 @@ export const Frame = ({ vote, setVote }) => {
                 {opt[0]}{" "}
               </h3>
               <br></br>
-            </div>
+            </form>
             {vote.isUserVoted ? (
               <>
                 <div id="progress">
