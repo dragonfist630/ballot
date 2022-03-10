@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Login from "./Login";
 import Ahomepage from "./Ahomepage";
+import CreateQuery from "./CreateQuery";
 import Vote from "./Components/Vote";
 
 // rafce
@@ -54,6 +55,7 @@ function App() {
         <Route path="/" element={<Reg />} />
         <Route path="/login" element={<Login />} />
         <Route path="/homepage" element={<Ahomepage />} />
+        <Route path="/createquery" element={<CreateQuery />} />
         <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
       </Routes>
     </div>
