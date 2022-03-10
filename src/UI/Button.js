@@ -6,7 +6,7 @@ const Button = (props) => {
   var display = props.display;
 
   return (
-    <button type="submit" id="reg_submit">
+    <button type="submit" className="reg_submit">
       <img src={require("../image/plus.png")} width={"30rem"} height={"30rem"} style={{ display }} alt="plus_icon" />
       {text}
     </button>

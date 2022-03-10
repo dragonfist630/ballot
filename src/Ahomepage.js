@@ -1,5 +1,5 @@
 import "./Ahomepage.css";
-import "./reg.css";
+// import "./reg.css";
 import Button from "./UI/Button";
 import Nav from "./nav";
 import Container from "@mui/material/Container";
@@ -9,7 +9,7 @@ const Ahomepage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  const handleInnersubmit = (e) => {};
+  
   const [frame, updateFrame] = useState([
     {
       id: 0,
@@ -44,19 +44,20 @@ const Ahomepage = (props) => {
   }
   return (
     <>
-      <Nav />
+      <Nav/>
       <form onSubmit={handleSubmit} className="Ahomepage_form">
         <Container className="reg" id="Outer_container">
-          <Button text="Add frame" display="inline" />
+          <div id="add_frame">
+          <Button text="Add frame" display="inline"  /> </div>
           <Container className="Inner_container">
             {frame.map((currElem) => {
               // console.log(currElem.id);
               return (
-                <form onSubmit={handleInnersubmit} className="inner_form" key={currElem.id}>
+                <div className="inner_form" key={currElem.id}>
                   <h3>{currElem.query}</h3>
                   {currElem.options.map((curr, index) => {
                     return (
-                      <>
+                      <div key={index}>
                         <div className="percent_name_wrap">
                           <span>{currElem.scores[index]}%</span>
                           <h3>{curr}</h3>
@@ -70,7 +71,7 @@ const Ahomepage = (props) => {
                             style={{ width: currElem.scores[index] + "%" }}
                           ></div>
                         </div>{" "}
-                      </>
+                      </div>
                     );
                   })}
                   <div className="bottom_form">
@@ -95,7 +96,7 @@ const Ahomepage = (props) => {
                       />
                     </div>
                   </div>
-                </form>
+                </div>
               );
             })}
           </Container>

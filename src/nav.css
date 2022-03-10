@@ -20,3 +20,7 @@
   justify-content: flex-start !important;
   margin: 0rem 0rem 0rem 0rem;
 }
+nav{
+  position: fixed!important;
+  /* margin: 1rem; */
+}

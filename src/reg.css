@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  position: relative;
+  top: 15%;
 }
 .lgin{
   margin-top: 5rem;

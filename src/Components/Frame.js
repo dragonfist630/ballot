@@ -52,7 +52,7 @@ export const Frame = ({ vote, setVote }) => {
         <p className="total-votes">Total votes: {sum}</p>
         {vote.isUserVoted ? (
           <h1></h1>
-        ) : ( <Button text="Vote" display="none" id="button" style={{ float: "right", marginLeft: "30%" }} onClick={() => setVote(vote.id)}/>
+        ) : ( <div id="button"> <Button text="Vote" display="none"  style={{ float: "right", marginLeft: "30%" }} onClick={() => setVote(vote.id)}/> </div>
         //   <button className="button-btn " style={{ float: "right", marginLeft: "30%" }} onClick={() => setVote(vote.id)}>
         //     Vote
         //   </button>

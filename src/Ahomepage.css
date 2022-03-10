@@ -1,15 +1,19 @@
 .Ahomepage_form {
   left: 10rem;
+  top: 5%;
+  /* position: fixed; */
 }
 .Inner_container {
   width: 100%;
   padding: 0px !important;
+  margin-top: 1rem;
 }
 #Outer_container {
   /* background-color: aqua; */
-  padding: 0px;
+  padding: 0px !important;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  width: 100% !important;
 }
 .inner_form {
   width: 80%;
@@ -50,45 +54,49 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 1.25rem;
   line-height: 2.25rem;
 }
-.usersPic_voteCount{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 22%;
+.usersPic_voteCount {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 22%;
 }
-.EditRemoveIcon_wrap{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.EditRemoveIcon_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.EditRemoveIcon_wrap img{
-    cursor: pointer;
-    display: flex;
-    flex-wrap: wrap;
+.EditRemoveIcon_wrap img {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
 }
-.usersPic img{
-    border-radius: 1rem;
-    border: 2px solid white;
+.usersPic img {
+  border-radius: 1rem;
+  border: 2px solid white;
 }
-.usersPic img:nth-child(2){
+#add_frame{
+  float: left;
+  margin-bottom: 1rem;
+}
+/* .usersPic img:nth-child(2){
     position: absolute;
     left: 1.9rem;
-    /* bottom: 2rem; */
+    
 }
 .usersPic img:nth-child(3){
     position: absolute;
     left: 3rem;
-    /* bottom: 1.7rem; */
+    
 }
 .usersPic img:nth-child(1){
     position: relative;
     left: -1.2rem;
-    /* bottom: .4rem; */
-}
+   
+} */
