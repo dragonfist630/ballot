@@ -5,6 +5,7 @@ import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 var Login = () => {
   const [userreg, updateuserreg] = useState({
@@ -19,11 +20,13 @@ var Login = () => {
     updateuserreg({ ...userreg, [name]: value });
     // console.log(userreg);
   };
+
   const onsubmit = (e) => {
     e.preventDefault();
     //validation part is here to be written
     updateuserreg({ email: "", password: "" });
     console.log(userreg);
+    return <Navigate to="homepage" />;
   };
   return (
     <>
@@ -34,7 +37,7 @@ var Login = () => {
         <div className="email-to-password" id="login_input">
           <input type="email" placeholder="Email" autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
           <input type="password" placeholder="Password" required autoComplete="off" value={userreg.password} onChange={handleInput} name="password" />
-          <Link href="#" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
+          <Link to="#" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
             {" "}
             Forget Password?
           </Link>
