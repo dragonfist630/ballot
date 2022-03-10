@@ -77,26 +77,39 @@
   display: flex;
   flex-wrap: wrap;
 }
+.EditRemoveIcon_wrap img{
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.usersPic{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: fit-content;
+  width: 17%;
+}
 .usersPic img {
   border-radius: 1rem;
   border: 2px solid white;
+  width: 2rem;
+  height: 2rem;
 }
 #add_frame{
   float: left;
   margin-bottom: 1rem;
 }
-/* .usersPic img:nth-child(2){
+.usersPic img:nth-child(2){
     position: absolute;
-    left: 1.9rem;
+    left: 22.2%;
     
 }
 .usersPic img:nth-child(3){
     position: absolute;
-    left: 3rem;
+    left: 21%;
     
 }
 .usersPic img:nth-child(1){
     position: relative;
-    left: -1.2rem;
+    /* bottom: -0.2%!important; */
    
-} */
+}

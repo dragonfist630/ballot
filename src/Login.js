@@ -5,7 +5,7 @@ import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 var Login = () => {
   const [userreg, updateuserreg] = useState({
@@ -38,7 +38,7 @@ var Login = () => {
           <div className="email-to-password" id="login_input">
             <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
             <input type="password" placeholder="Password" required autoComplete="off" value={userreg.password} onChange={handleInput} name="password" />
-            <Link to="#" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
+            <Link to="#" id="link">
               {" "}
               Forget Password?
             </Link>
