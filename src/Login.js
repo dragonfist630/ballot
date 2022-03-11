@@ -38,7 +38,7 @@ var Login = () => {
           <div className="email-to-password" id="login_input">
             <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
             <input type="password" placeholder="Password" required autoComplete="off" value={userreg.password} onChange={handleInput} name="password" />
-            <Link to="#" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
+            <Link to="/forgotpass" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
               {" "}
               Forget Password?
             </Link>

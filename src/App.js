@@ -6,6 +6,7 @@ import Login from "./Login";
 import Ahomepage from "./Ahomepage";
 import Vote from "./Components/Vote";
 import { Link } from 'react-router-dom';
+import ForgotPass from "./Components/ForgotPass";
 // import Login from "./Login";
 // import Test from "./test";
 
@@ -35,8 +36,22 @@ function App() {
           THBS:300,
       },
       isUserVoted:true,
-  }
+  },
+  {
+    id:3,
+    query:"who is more dangerous",
+    options:{
+        Lion:20,
+        Shark:40,
+        Mosquitoes:60,
+        snake:80,
+        Humans:100,
+    },
+    isUserVoted:false,
+}
 ]
+
+const [user,setUser] = useState(false);
 
 const [ballot, setBallot] = useState(votes)
 
@@ -49,7 +64,7 @@ const setVote =async (id) => {
 
     setBallot(
       ballot.map((vote) => 
-      vote.id === 1 ? { ...vote,isUserVoted:updatestatus.isUserVoted } : vote
+      vote.id === id ? { ...vote,isUserVoted:updatestatus.isUserVoted } : vote
       )
     )
     console.log(ballot);
@@ -60,9 +75,10 @@ const setVote =async (id) => {
   return (
     <div className="background">
       <Routes>
-        <Route path="/" element={<Reg />} />
+        <Route path="/" exact element={<Reg />} />
         <Route path="/login" element={<Login />} />
         <Route path="/homepage" element={<Ahomepage />} />
+        <Route path="/forgotpass" element={<ForgotPass />} />
         <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
       </Routes>
     </div>

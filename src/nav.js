@@ -7,6 +7,7 @@ var Nav = () => {
         <div className="img-size"></div>
         <span className="navbar-brand header">Ballot</span>
       </div>
+      
     </nav>
   );
 };
