@@ -9,7 +9,7 @@ const Ahomepage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  
+
   const [frame, updateFrame] = useState([
     {
       id: 0,
@@ -17,7 +17,6 @@ const Ahomepage = (props) => {
       options: ["Python", "Java", "Javascript", "C#"],
       scores: [50, 30, 82, 30],
       tVotes: 25,
-      img: "require('./image/6144.jpg')",
     },
     {
       id: 1,
@@ -25,7 +24,6 @@ const Ahomepage = (props) => {
       options: ["Google", "Oracle", "Tata", "Ford", "Infosys"],
       scores: [75, 65, 40, 30, 60],
       tVotes: 45,
-      img: "require('./image/6144.jpg')",
     },
     {
       id: 2,
@@ -33,7 +31,6 @@ const Ahomepage = (props) => {
       options: ["Python", "Java", "Javascript", "C#"],
       scores: [50, 30, 82, 30],
       tVotes: 25,
-      img: "require('./image/6144.jpg')",
     },
   ]);
   const removeFrame = (id) => {
@@ -41,14 +38,15 @@ const Ahomepage = (props) => {
       return currElem.id !== id;
     });
     updateFrame(newRecord);
-  }
+  };
   return (
     <>
-      <Nav/>
+      <Nav logedin="true" />
       <form onSubmit={handleSubmit} className="Ahomepage_form">
         <Container className="reg" id="Outer_container">
           <div id="add_frame">
-          <Button text="Add frame" display="inline"  /> </div>
+            <Button text="Add frame" display="inline" />{" "}
+          </div>
           <Container className="Inner_container">
             {frame.map((currElem) => {
               // console.log(currElem.id);
@@ -77,9 +75,7 @@ const Ahomepage = (props) => {
                   <div className="bottom_form">
                     <div className="usersPic_voteCount">
                       <div className="usersPic">
-                        <img src={require("./image/6144.jpg")} alt="user1" width={"2.063rem"} height={"2.063rem"} />
-                        <img src={require("./image/6144.jpg")} alt="user2" width={"2.063rem"} height={"2.063rem"} />
-                        <img src={require("./image/6144.jpg")} alt="user3" width={"2.063rem"} height={"2.063rem"} />
+                        {true ? frame.map((currElem)=>{return <img src={require("./image/6144.jpg")} alt="user1" />}) : <span>here</span>}
                       </div>
                       Total vote: {currElem.tVotes}
                     </div>

@@ -8,7 +8,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   position: relative;
-  top: 15%;
+  top: 5%;
 }
 .lgin{
   margin-top: 5rem;
@@ -94,4 +94,10 @@ input::placeholder {
 }
 #login_input input {
   height: 5.75rem;
+}
+#link{
+  text-decoration: none!important;
+  color: "#0029FE";
+  font-size: 1.5rem;
+  margin: 0.5rem;
 }

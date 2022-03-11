@@ -5,7 +5,7 @@ import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 var Login = () => {
   const [userreg, updateuserreg] = useState({

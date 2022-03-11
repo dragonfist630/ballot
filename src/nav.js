@@ -1,14 +1,20 @@
 import "./nav.css";
+import { Link } from "react-router-dom";
 
-var Nav = () => {
+var Nav = (props) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light ">
-      <div className="container display">
+    <nav className="navbar-light">
+      <div className="display">
         <div className="img-size"></div>
-        <span className="navbar-brand header">Ballot</span>
+        <span className=" header">Ballot</span>
       </div>
       
     </nav>
   );
 };
 export default Nav;
+
+// navbar-expand-lg
+// navbar
+// container
+// navbar-brand

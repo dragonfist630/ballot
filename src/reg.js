@@ -41,7 +41,7 @@ var Reg = () => {
   };
   return (
     <>
-    <Nav />
+    <Nav/>
     <Container className="reg">
       <Upperpart top_heading="Start for free" heading="Create new account" bottom_heading="Already a member?" link="LogIn" href="login" />
       <form action="#" onSubmit={onsubmit}>
