@@ -1,6 +1,6 @@
 import emailjs from "emailjs-com";
 
-
+import { ResetPass } from "./ResetPass.js";
 import "../reg.js";
 import Button from "../UI/Button";
 import Nav from "../nav";
@@ -51,7 +51,7 @@ var ForgotPass = () => {
                     console.log("status " + res.status);
                     alert("OTP send")
                     setotpsends(true)
-                    // document.getElementById("otpbutton").style.display = "none"
+                     document.getElementById("otpbutton").style.display = "none"
                     // document.getElementById("otpbox").style.display = "block"
 
                 }
@@ -65,7 +65,7 @@ var ForgotPass = () => {
     }
 
     const verifyOtp = (otpgot) => {
-        if (otp === otpgot) {
+        if (otp == otpgot) {
             alert(otp + " -- >otp matches")
             setverifyotp(true)
         }
@@ -79,16 +79,16 @@ var ForgotPass = () => {
                 <Upperpart top_heading="" heading="Forgot Password" bottom_heading="Enter Registered mail /" link="Create account" href="/" />
                 <>
                     <div className="email-to-password" id="login_input">
-                        <div style={{ display: "flex", flexDirection: "row" }} id="">
-                            <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" style={{ width: "auto", marginRight: "20px" }} id="givenemail" />
+                        <div style={{ display: "flex", flexDirection: "column" }} id="">
+                            <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" style={{ width: "auto", marginBottom:"20px" }} id="givenemail" />
                             <button className="reg_submit" onClick={() => sendOtp(document.getElementById("givenemail").value)} id="otpbutton">Send Otp</button>
                         </div>
                         {
                             otpsends ? <>
                                 {
-                                    verifyotp ? <h1>Otp verified</h1> :
-                                        <div style={{ display: "flex", flexDirection: "row" }} id="otpbox">
-                                            <input type="number" placeholder="Enter otp" required autoComplete="off" onChange={handleInput} name="otp" id="enteredotp" style={{ marginRight: "20px" }} />
+                                    verifyotp ? <ResetPass/> :
+                                        <div style={{ display: "flex", flexDirection: "column" }} id="otpbox">
+                                            <input type="number" placeholder="Enter otp"  required autoComplete="off" onChange={handleInput} name="otp" id="enteredotp" style={{ marginRight: "20px" }} />
                                             <button className="reg_submit" onClick={() => verifyOtp(document.getElementById("enteredotp").value)}>Verify OTP</button>
                                         </div>
                                 } </>
