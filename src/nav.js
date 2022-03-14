@@ -8,15 +8,7 @@ var Nav = (props) => {
         <div className="img-size"></div>
         <span className=" header">Ballot</span>
       </div>
-      {props.logedin ? (
-        <div id="imgSpan_wrap">
-          <Link to={"/login"} className="logoutSpan">
-          <span>Log out</span></Link>
-          <img src={require("./image/6144.jpg")} alt="the_pic" id="profile_pic" />
-        </div>
-      ) : (
-        <span></span>
-      )}
+      
     </nav>
   );
 };

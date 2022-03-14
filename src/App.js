@@ -6,6 +6,10 @@ import Login from "./Login";
 import Ahomepage from "./Ahomepage";
 import CreateQuery from "./CreateQuery";
 import Vote from "./Components/Vote";
+import { Link } from 'react-router-dom';
+import ForgotPass from "./Components/ForgotPass";
+// import Login from "./Login";
+// import Test from "./test";
 
 // rafce
 
@@ -32,11 +36,25 @@ function App() {
         Microsoft: 22,
         THBS: 300,
       },
-      isUserVoted: true,
+      isUserVoted:true,
+  },
+  {
+    id:3,
+    query:"who is more dangerous",
+    options:{
+        Lion:20,
+        Shark:40,
+        Mosquitoes:60,
+        snake:80,
+        Humans:100,
     },
-  ];
+    isUserVoted:false,
+}
+]
 
-  const [ballot, setBallot] = useState(votes);
+const [user,setUser] = useState(false);
+
+const [ballot, setBallot] = useState(votes)
 
   const setVote = async (id) => {
     if (id) {
@@ -45,17 +63,23 @@ function App() {
       const updatestatus = { ...voteon, isUserVoted: !voteon.isUserVoted };
       console.log(updatestatus.isUserVoted);
 
-      setBallot(ballot.map((vote) => (vote.id === 1 ? { ...vote, isUserVoted: updatestatus.isUserVoted } : vote)));
-      console.log(ballot);
-    } else alert("please choose something for vote");
-  };
+    setBallot(
+      ballot.map((vote) => 
+      vote.id === id ? { ...vote,isUserVoted:updatestatus.isUserVoted } : vote
+      )
+    )
+    console.log(ballot);
+   }
+   else
+   alert("please choose something for vote")
+}
   return (
     <div className="background">
       <Routes>
-        <Route path="/" element={<Reg />} />
+        <Route path="/" exact element={<Reg />} />
         <Route path="/login" element={<Login />} />
         <Route path="/homepage" element={<Ahomepage />} />
-        <Route path="/createquery" element={<CreateQuery />} />
+        <Route path="/forgotpass" element={<ForgotPass />} />
         <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
       </Routes>
     </div>
