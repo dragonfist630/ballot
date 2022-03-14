@@ -4,19 +4,18 @@ import "./CreateQuery.css";
 import Container from "@mui/material/Container";
 import Button from "./UI/Button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const CreateQuery = () => {
   const [options, addOptions] = useState([1, 2]);
-  let navigate = useNavigate();
   const createOption = () =>{ options.length<6 ? addOptions([...options, 1]): alert("Only 6 Options are allowed!")}
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/homepage");
   };
+  const homepage = ["Homepage", "/homepage"]
   return (
     <>
-      <Nav logedin="true" />
+      <Nav logedin="true" firstName="A" homepage={homepage} />
       <Container className="createQuery_wrap">
         <form onSubmit={handleSubmit} className="createQuery_form">
           <p>

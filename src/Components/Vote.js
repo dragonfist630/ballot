@@ -6,7 +6,7 @@ import { Frame } from './Frame'
       
     return (
       <>
-       <Nav logedin="true"/>
+       <Nav logedin="" firstName="Nayan" lastName="Gadhari" />
        {votes.map((vote) => (     
         <Frame key={vote.id} vote={vote} setVote={setVote}/>
       ))}

@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   padding-left: 0.5rem;
-  color: white!important;
+  color: white;
 }
 .img-size {
   width: 2.75rem;
@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start!important;
+  justify-content: flex-start;
   align-items: center;
   margin: 0rem 0rem 0rem 0rem;
   width: 15%;
@@ -30,7 +30,7 @@ nav{
   z-index:10;
   display: flex;
   flex-direction: row;
-  justify-content: space-between!important;
+  justify-content: space-between;
   flex-wrap: wrap;
   /* background-color: aqua; */
   width: 90%;
@@ -39,6 +39,12 @@ nav{
   border-radius: 2.5rem;
   width: 3.963rem;
   height: 3.813rem;
+  margin: auto;
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 24px!important;
+  background-color: #0029fe;
+  
 }
 #imgSpan_wrap{
   display: flex;
@@ -47,7 +53,7 @@ nav{
   align-items: center;
   /* flex-wrap: wrap; */
   /* background-color: blue; */
-  width: 15%;
+  width: 20%;
   padding-right: 1rem;
 }
 #imgSpan_wrap span{
@@ -57,4 +63,8 @@ nav{
 }
 .logoutSpan{
   text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 }
