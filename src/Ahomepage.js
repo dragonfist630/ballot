@@ -1,10 +1,10 @@
 import "./Ahomepage.css";
-// import "./reg.css";
 import Button from "./UI/Button";
 import { Link } from "react-router-dom";
 import Nav from "./nav";
 import Container from "@mui/material/Container";
-import { useState, useEffect } from "react";
+import  {useState}  from "react";
+// import useEffect from "react";
 
 const Ahomepage = (props) => {
   const handleSubmit = (e) => {

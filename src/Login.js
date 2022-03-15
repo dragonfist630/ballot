@@ -33,7 +33,7 @@ var Login = () => {
     <>
       <Nav />
       <Container className="reg lgin">
-        <Upperpart top_heading="Welcome! Again" heading="Login" bottom_heading="New here?" link="Register account" href="/" />
+        <Upperpart top_heading="Welcome! Again" heading="Login" bottom_heading="New here?" link="Register account" href="/reg" />
         <form action="#" onSubmit={onsubmit}>
           <div className="email-to-password" id="login_input">
             <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />

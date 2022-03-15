@@ -1,14 +1,14 @@
 import emailjs from "emailjs-com";
 import { ResetPass } from "./ResetPass.js";
 import "../reg.js";
-import Button from "../UI/Button";
+// import Button from "../UI/Button";
 import Nav from "../nav";
 import Upperpart from "./Upper_part";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useState } from "react";
 import "../UI/Button.css";
-import { Navigate, useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 
 var ForgotPass = () => {
   const [otpsends, setotpsends] = useState(false);
@@ -25,17 +25,17 @@ var ForgotPass = () => {
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
   };
-  let navigate = useNavigate();
-  function req() {
-    navigate("/");
-  }
-  const onsubmit = (e) => {
-    e.preventDefault();
-    //validation part is here to be written
-    updateuserreg({ email: "", password: "" });
-    console.log(userreg);
-    //req();
-  };
+  // let navigate = useNavigate();
+  // function req() {
+  //   navigate("/");
+  // }
+  // const onsubmit = (e) => {
+  //   e.preventDefault();
+  //   //validation part is here to be written
+  //   updateuserreg({ email: "", password: "" });
+  //   console.log(userreg);
+  //   //req();
+  // };
   const sendOtp = (givenemail) => {
     const newotp = Math.floor(Math.random() * 1000000);
     setotp(newotp);
@@ -56,7 +56,6 @@ var ForgotPass = () => {
           alert("OTP send");
           setotpsends(true);
           document.getElementById("otpbutton").style.display = "none";
-          // document.getElementById("otpbox").style.display = "block"
         });
     } catch (error) {
       alert("something went wrong ", error);
@@ -64,7 +63,7 @@ var ForgotPass = () => {
   };
 
   const verifyOtp = (otpgot) => {
-    if (otp == otpgot) {
+    if (otp === otpgot) {
       alert(otp + " -- >otp matches");
       setverifyotp(true);
     } else alert("invalid otp");
@@ -73,7 +72,7 @@ var ForgotPass = () => {
     <>
       <Nav />
       <Container className="reg lgin">
-        <Upperpart top_heading="" heading="Forgot Password" bottom_heading="Enter Registered mail /" link="Create account" href="/" />
+        <Upperpart top_heading="" heading="Forgot Password" bottom_heading="Enter Registered mail /" link="Create account" href="/reg" />
         <>
           <div className="email-to-password" id="login_input">
             <div style={{ display: "flex", flexDirection: "column" }} id="">

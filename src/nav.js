@@ -12,7 +12,7 @@ var Nav = (props) => {
   props.lastName === undefined ? (lastName = " ") : (lastName = props.lastName);
   var pp = firstName.split("")[0] + lastName.split("")[0];
   return (
-    <nav className="navbar-light">
+    <nav className="navbar-light fluid">
       <div className="display">
         <div className="img-size"></div>
         <span className=" header">Ballot</span>
@@ -27,7 +27,7 @@ var Nav = (props) => {
             <span></span>
           )}
           <span id="profile_pic">{pp}</span>
-          <Link to={"/login"} className="logoutSpan">
+          <Link to={"/"} className="logoutSpan">
             <span>logout</span>
           </Link>
         </div>

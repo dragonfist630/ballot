@@ -6,10 +6,8 @@ import Login from "./Login";
 import Ahomepage from "./Ahomepage";
 import CreateQuery from "./CreateQuery";
 import Vote from "./Components/Vote";
-import { Link } from 'react-router-dom';
 import ForgotPass from "./Components/ForgotPass";
-// import Login from "./Login";
-// import Test from "./test";
+
 
 // rafce
 
@@ -52,7 +50,7 @@ function App() {
 }
 ]
 
-const [user,setUser] = useState(false);
+// const [user,setUser] = useState(false);
 
 const [ballot, setBallot] = useState(votes)
 
@@ -76,9 +74,10 @@ const [ballot, setBallot] = useState(votes)
   return (
     <div className="background">
       <Routes>
-        <Route path="/" exact element={<Reg />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/reg" exact element={<Reg />} />
+        <Route path="/" element={<Login />} />
         <Route path="/homepage" element={<Ahomepage />} />
+        <Route path="/createquery" element={<CreateQuery />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
         <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
       </Routes>

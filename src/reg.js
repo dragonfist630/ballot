@@ -4,8 +4,10 @@ import Nav from "./nav";
 import Upperpart from "./Components/Upper_part";
 import Container from "@mui/material/Container";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 var Reg = () => {
+  let navigate = useNavigate();
   // const  [c_password_error, updateC_password_error] = useState("");
   const [userreg, updateuserreg] = useState({
     fistName: "",
@@ -32,7 +34,7 @@ var Reg = () => {
       const record_with_id = { ...userreg, id: new Date().getTime().toString() };
       updaterecord([...records, record_with_id]);
       updateuserreg({ firstName: "", lastName: "", emailId: "", password: "", c_password: "" });
-      window.location.href = "login";
+      navigate("/");
     } else {
       // var temp = "border:'2px solid red'";
       // updateC_password_error(temp);
@@ -43,7 +45,7 @@ var Reg = () => {
     <>
     <Nav/>
     <Container className="reg">
-      <Upperpart top_heading="Start for free" heading="Create new account" bottom_heading="Already a member?" link="LogIn" href="login" />
+      <Upperpart top_heading="Start for free" heading="Create new account" bottom_heading="Already a member?" link="LogIn" href="/" />
       <form action="#" onSubmit={onsubmit}>
         <div className="Initals">
           <input type="text" placeholder="First name" required autoComplete="off" value={userreg.firstName} onChange={handleInput} name="firstName" />
