@@ -75,12 +75,13 @@ const [ballot, setBallot] = useState(votes)
     <div className="background">
       <Routes>
         <Route path="/reg" exact element={<Reg />} />
-        <Route path="/" element={<Login />} />
+//         <Route path="/" element={<Login />} />
         <Route path="/homepage" element={<Ahomepage />} />
         <Route path="/createquery" element={<CreateQuery />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
         <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
       </Routes>
+<Login/>
     </div>
   );
 }
