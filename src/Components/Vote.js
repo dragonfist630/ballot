@@ -1,4 +1,4 @@
-import Nav from "../nav";
+import Nav from "./nav";
 import React from 'react'
 import { Frame } from './Frame'
 

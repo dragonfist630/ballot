@@ -1,8 +1,7 @@
-import React from "react";
-import Nav from "./nav";
+import Nav from "../Components/nav";
 import "./CreateQuery.css";
 import Container from "@mui/material/Container";
-import Button from "./UI/Button";
+import Button from "../UI/Button";
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 

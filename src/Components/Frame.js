@@ -1,6 +1,6 @@
 import "./framestyle.css";
-import "../Ahomepage.css";
-import Button from "../UI/Button";
+import "../Pages/Ahomepage.css";
+// import Button from "../UI/Button";
 // import ProgressBar from "react-bootstrap/ProgressBar";
 import Container from "@mui/material/Container";
 export const Frame = ({ vote, setVote }) => {
@@ -10,9 +10,9 @@ export const Frame = ({ vote, setVote }) => {
     sum = sum + element[1];
   });
   console.log(sum);
-  var handleSubmit = (e) => {
-    e.preventDefault();
-  }
+  // var handleSubmit = (e) => {
+  //   e.preventDefault();
+  // }
 
   return (
     <Container className="single-frame Ahomepage_form inner_form">

@@ -1,8 +1,8 @@
 import emailjs from "emailjs-com";
 import { ResetPass } from "./ResetPass.js";
-import "../reg.js";
+import "../Pages/reg";
 // import Button from "../UI/Button";
-import Nav from "../nav";
+import Nav from "./nav";
 import Upperpart from "./Upper_part";
 import Container from "@mui/material/Container";
 // import { Link } from "react-router-dom";

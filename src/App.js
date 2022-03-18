@@ -1,13 +1,13 @@
 import "./App.css";
-import Reg from "./reg";
+import Reg from "./Pages/reg";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import Login from "./Login";
-import Ahomepage from "./Ahomepage";
-import CreateQuery from "./CreateQuery";
+import Login from "./Pages/Login";
+import Ahomepage from "./Pages/Ahomepage";
+import CreateQuery from "./Pages/CreateQuery";
 import Vote from "./Components/Vote";
 import ForgotPass from "./Components/ForgotPass";
-
+import { APIProvider } from "./API/APIProvider";
 
 // rafce
 
@@ -34,25 +34,25 @@ function App() {
         Microsoft: 22,
         THBS: 300,
       },
-      isUserVoted:true,
-  },
-  {
-    id:3,
-    query:"who is more dangerous",
-    options:{
-        Lion:20,
-        Shark:40,
-        Mosquitoes:60,
-        snake:80,
-        Humans:100,
+      isUserVoted: true,
     },
-    isUserVoted:false,
-}
-]
+    {
+      id: 3,
+      query: "who is more dangerous",
+      options: {
+        Lion: 20,
+        Shark: 40,
+        Mosquitoes: 60,
+        snake: 80,
+        Humans: 100,
+      },
+      isUserVoted: false,
+    },
+  ];
 
-// const [user,setUser] = useState(false);
+  // const [user,setUser] = useState(false);
 
-const [ballot, setBallot] = useState(votes)
+  const [ballot, setBallot] = useState(votes);
 
   const setVote = async (id) => {
     if (id) {
@@ -61,26 +61,22 @@ const [ballot, setBallot] = useState(votes)
       const updatestatus = { ...voteon, isUserVoted: !voteon.isUserVoted };
       console.log(updatestatus.isUserVoted);
 
-    setBallot(
-      ballot.map((vote) => 
-      vote.id === id ? { ...vote,isUserVoted:updatestatus.isUserVoted } : vote
-      )
-    )
-    console.log(ballot);
-   }
-   else
-   alert("please choose something for vote")
-}
+      setBallot(ballot.map((vote) => (vote.id === id ? { ...vote, isUserVoted: updatestatus.isUserVoted } : vote)));
+      console.log(ballot);
+    } else alert("please choose something for vote");
+  };
   return (
     <div className="background">
-      <Routes>
-        <Route path="/reg" exact element={<Reg />} />
-        <Route path="/" element={<Login />} />
-        <Route path="/homepage" element={<Ahomepage />} />
-        <Route path="/createquery" element={<CreateQuery />} />
-        <Route path="/forgotpass" element={<ForgotPass />} />
-        <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
-      </Routes>
+      <APIProvider>
+        <Routes>
+          <Route path="/reg" exact element={<Reg />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/homepage" element={<Ahomepage />} />
+          <Route path="/createquery" element={<CreateQuery />} />
+          <Route path="/forgotpass" element={<ForgotPass />} />
+          <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
+        </Routes>
+      </APIProvider>
     </div>
   );
 }

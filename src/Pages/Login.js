@@ -1,15 +1,24 @@
 import "./reg.css";
-import Button from "./UI/Button";
-import Nav from "./nav";
-import Upperpart from "./Components/Upper_part";
+import Button from "../UI/Button";
+import Nav from "../Components/nav";
+import Upperpart from "../Components/Upper_part";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 var Login = () => {
+  const temp = {"emailId":"gadharinayan@gmail.com", "password":"pass@123"}
+  const requestOptions = {
+    mode:"no-cors",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(temp),
+  };
+  fetch('http://localhost:4000/users/login', requestOptions)
+    .catch((response) => console.log(response.json()));
   const [userreg, updateuserreg] = useState({
-    email: "",
+    emailId: "",
     password: "",
   });
   const handleInput = (e) => {
@@ -25,7 +34,10 @@ var Login = () => {
   const onsubmit = (e) => {
     e.preventDefault();
     //validation part is here to be written
-    updateuserreg({ email: "", password: "" });
+      // .catch((data) => alert(data));
+
+    console.log(JSON.stringify({ emailId: "gadharinayan@gmail.com", password: "pass@123" }));
+    updateuserreg({ emailId: "", password: "" });
     console.log(userreg);
     req();
   };
@@ -36,7 +48,7 @@ var Login = () => {
         <Upperpart top_heading="Welcome! Again" heading="Login" bottom_heading="New here?" link="Register account" href="/reg" />
         <form action="#" onSubmit={onsubmit}>
           <div className="email-to-password" id="login_input">
-            <input type="email" placeholder="Email" required autoComplete="off" value={userreg.email} onChange={handleInput} name="email" />
+            <input type="email" placeholder="Email" required autoComplete="off" value={userreg.emailId} onChange={handleInput} name="emailId" />
             <input
               type="password"
               placeholder="Password"

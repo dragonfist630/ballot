@@ -1,7 +1,7 @@
 import "./reg.css";
-import Button from "./UI/Button";
-import Nav from "./nav";
-import Upperpart from "./Components/Upper_part";
+import Button from "../UI/Button";
+import Nav from "../Components/nav";
+import Upperpart from "../Components/Upper_part";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +33,15 @@ var Reg = () => {
     if (pass_check) {
       const record_with_id = { ...userreg, id: new Date().getTime().toString() };
       updaterecord([...records, record_with_id]);
+      const requestOptions = {
+        mode:"no-cors",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userreg }),
+      };
+      fetch("http://localhost:4000/users/register", requestOptions)
+        .then((response) => response.json())
+        .catch(data => alert(data));
       updateuserreg({ firstName: "", lastName: "", emailId: "", password: "", c_password: "" });
       navigate("/");
     } else {
