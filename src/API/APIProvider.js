@@ -1,33 +1,45 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const APIcontext = createContext();
 
-export const APIProvider = props => {
-    const [vote, setVote] = useState([
-        {
-          queryId: 0,
-          query: "Which programming languages you like?",
-          options: ["Python", "Java", "Javascript", "C#"],
-          optionsId:['q0p0','q0p1','q0p2','q0p3'],
-          scores: [50, 30, 82, 30],
-          tVotes: 192,
-        },
-        {
-          queryId: 1,
-          query: "Which Company you think is best?",
-          options: ["Google", "Oracle", "Tata", "Ford", "Infosys"],
-          optionsId:['q0p0','q0p1','q0p2','q0p3'],
-          scores: [75, 65, 40, 30, 60],
-          tVotes: 270,
-        },
-        {
-          queryId: 2,
-          query: "Which programming languages you like?",
-          options: ["Python", "Java", "Javascript", "C#"],
-          optionsId:['q0p0','q0p1','q0p2','q0p3'],
-          scores: [50, 30, 82, 30],
-          tVotes: 192,
-        },
-      ]);
-  return <APIcontext.Provider value={[vote,setVote]}>{props.children}</APIcontext.Provider>;
+export const APIProvider = (props) => {
+  const [vote, setVote] = useState([
+    {
+      _id: 0,
+      queryName: "Which programming languages you like?",
+      optionName: ["Python", "Java", "Javascript", "C#"],
+      value: [50, 30, 82, 30],
+      totalVotes: 192,
+    },
+    {
+      _id: 1,
+      queryName: "Which Company you think is best?",
+      optionName: ["Google", "Oracle", "Tata", "Ford", "Infosys"],
+      value: [75, 65, 40, 30, 60],
+      totalVotes: 270,
+    },
+    {
+      _id: 2,
+      queryName: "Which programming languages you like?",
+      optionName: ["Python", "Java", "Javascript", "C#"],
+      value: [50, 30, 82, 30],
+      totalVotes: 192,
+    },
+  ]);
+  const [userInfo, setuserInfo] = useState({userId:"",fName:"",lName:""});
+  const fetchFunction = async () => {
+    try {
+      const done = await fetch("http://localhost:3000/getquery");
+      const data = await done.json();
+      console.log({ data });
+      setVote([...data, ...vote]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchFunction();
+  }, []);
+
+  return <APIcontext.Provider value={{vote:[vote, setVote],userInfos:[userInfo, setuserInfo]}}>{props.children}</APIcontext.Provider>;
 };

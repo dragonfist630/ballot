@@ -69,7 +69,7 @@ function App() {
     <div className="background">
       <APIProvider>
         <Routes>
-          <Route path="/reg" exact element={<Reg />} />
+          <Route path="/reg" exact element={<Reg />} />          
           <Route path="/" element={<Login />} />
           <Route path="/homepage" element={<Ahomepage />} />
           <Route path="/createquery" element={<CreateQuery />} />
