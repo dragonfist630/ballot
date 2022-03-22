@@ -2,10 +2,13 @@ import Nav from "../Components/nav";
 import "./CreateQuery.css";
 import Container from "@mui/material/Container";
 import Button from "../UI/Button";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { APIcontext } from "../API/APIProvider";
 // import { useNavigate } from "react-router-dom";
 
 const CreateQuery = () => {
+  const { vote, userInfos } = useContext(APIcontext);
+  const [userInfo] = userInfos;
   const [Query, updateQuery] = useState({
     queryName: "",
     optionName: [],
@@ -20,7 +23,6 @@ const CreateQuery = () => {
   };
   const fetchFunction = async () => {
     const requestOptions = {
-      mode: "cors",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...Query }),
@@ -28,17 +30,22 @@ const CreateQuery = () => {
     try {
       const done = await fetch("http://localhost:3000/querys", requestOptions);
       const data = await done.json();
-      console.log({data});
+      if (data.message) {
+        alert(data.message);        
+      }
+      if (data.error) {
+        alert(data.error);
+      }
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
   const [options, addOptions] = useState([1, 2]);
   const createOption = () => {
     options.length <= 6 ? addOptions([...options, 1]) : alert("Only 6 Options are allowed!");
   };
-  var arr = [];
-  const arr1 = [];
+  // var arr = [];
+  // const arr1 = [];
   const handleSubmit = (e) => {
     e.preventDefault();
     Query.value = [];
@@ -58,7 +65,7 @@ const CreateQuery = () => {
   const homepage = ["Homepage", "/homepage"];
   return (
     <>
-      <Nav logedin="true" firstName="A" homepage={homepage} />
+      <Nav logedin="true" firstName={userInfo.fName} homepage={homepage} />
       <Container className="createQuery_wrap">
         <form onSubmit={handleSubmit} className="createQuery_form">
           <p>

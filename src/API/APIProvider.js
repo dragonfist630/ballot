@@ -26,7 +26,7 @@ export const APIProvider = (props) => {
       totalVotes: 192,
     },
   ]);
-  const [userInfo, setuserInfo] = useState({userId:"",fName:"",lName:""});
+  const [userInfo, setuserInfo] = useState({userId:"",fName:" ",lName:" ",querName:[]});
   const fetchFunction = async () => {
     try {
       const done = await fetch("http://localhost:3000/getquery");

@@ -37,8 +37,14 @@ var Login = () => {
     else{
       setTimeout(function () {
         const [userId,fName,lName] = responseData;
+        if(userId==="623959c75a32210734e0f26e"){
         setuserInfo({userId,fName,lName});
         navigate('/homepage');
+        }
+        else{
+          setuserInfo({userId,fName,lName});
+          navigate('/allframes');
+        }
       }, millisecondsToWait);
     }
     

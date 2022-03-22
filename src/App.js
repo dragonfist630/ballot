@@ -6,7 +6,7 @@ import Login from "./Pages/Login";
 import Ahomepage from "./Pages/Ahomepage";
 import CreateQuery from "./Pages/CreateQuery";
 import Vote from "./Components/Vote";
-import ForgotPass from "./Components/ForgotPass";
+import ForgotPass from "./Components/ForgotPass (1)";
 import { APIProvider } from "./API/APIProvider";
 
 // rafce

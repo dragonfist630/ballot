@@ -9,7 +9,7 @@ export const Frame = ({ vote, setVote }) => {
   options.forEach((element) => {
     sum = sum + element[1];
   });
-  console.log(sum);
+  // console.log(sum);
   // var handleSubmit = (e) => {
   //   e.preventDefault();
   // }

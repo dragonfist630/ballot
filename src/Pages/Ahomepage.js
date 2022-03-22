@@ -14,7 +14,7 @@ const Ahomepage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
+  console.log(userInfo.queryName);
   const removeFrame = (id) => {
     const newRecord = frame.filter((currElem) => {
       return currElem._id !== id;
@@ -23,7 +23,7 @@ const Ahomepage = (props) => {
   };
   return (
     <>
-      <Nav logedin="true" firstName={userInfo.fName} />
+      <Nav logedin="true" firstName={userInfo.fName} lastName={userInfo.lName}/>
       <form onSubmit={handleSubmit} className="Ahomepage_form">
         <Container className="reg" id="Outer_container">
           <div id="add_frame">
@@ -41,7 +41,7 @@ const Ahomepage = (props) => {
                     return (
                       <div key={index}>
                         <div className="percent_name_wrap">
-                          <span>{Math.floor((currElem.value[index]/currElem.totalVotes)*100)}%</span>
+                          <span>{ currElem.value[index] !== 0 ? Math.floor((currElem.value[index]/currElem.totalVotes)*100):0}%</span>
                           <h3>{curr}</h3>
                         </div>
                         <div className="progress p_inline_bar">
@@ -67,10 +67,10 @@ const Ahomepage = (props) => {
                           <span>here</span>
                         )}
                       </div> */}
-                      Total vote: {currElem.tVotes}
+                      Total vote: {currElem.totalVotes}
                     </div>
                     <div className="EditRemoveIcon_wrap">
-                      <img src={require("../image/edit.png")} alt="edit" width={"35.063rem"} height={"35.063rem"} />
+                      {/* <img src={require("../image/edit.png")} alt="edit" width={"35.063rem"} height={"35.063rem"} /> */}
                       <img
                         src={require("../image/remove.png")}
                         alt="delete"
