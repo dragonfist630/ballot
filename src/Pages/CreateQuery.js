@@ -31,7 +31,7 @@ const CreateQuery = () => {
       const done = await fetch("http://localhost:3000/querys", requestOptions);
       const data = await done.json();
       if (data.message) {
-        alert(data.message);        
+        alert(data.message);
       }
       if (data.error) {
         alert(data.error);
@@ -44,8 +44,6 @@ const CreateQuery = () => {
   const createOption = () => {
     options.length <= 6 ? addOptions([...options, 1]) : alert("Only 6 Options are allowed!");
   };
-  // var arr = [];
-  // const arr1 = [];
   const handleSubmit = (e) => {
     e.preventDefault();
     Query.value = [];
@@ -57,10 +55,6 @@ const CreateQuery = () => {
     }
     console.log(Query);
     fetchFunction();
-    // updateQuery({ ...Query, queryName: "" });
-    // for (let i = 0; i < options.length; i++) {
-    //   document.getElementById(i).value = "";
-    // }
   };
   const homepage = ["Homepage", "/homepage"];
   return (

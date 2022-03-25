@@ -4,14 +4,14 @@ import Nav from "../Components/nav";
 import Upperpart from "../Components/Upper_part";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIcontext } from "../API/APIProvider";
 
 var Login = () => {
   let navigate = useNavigate();
-  const {vote,userInfos} = useContext(APIcontext);
-  const [userInfo,setuserInfo] = userInfos;
+  const { vote, userInfos } = useContext(APIcontext);
+  const [userInfo, setuserInfo] = userInfos;
   const [userreg, updateuserreg] = useState({
     emailId: "",
     password: "",
@@ -27,33 +27,27 @@ var Login = () => {
       const done = await fetch("http://localhost:3000/login", requestOptions);
       const data = await done.json();
       var responseData = data;
-      console.log({ data });
-      if(responseData.error){
-      var millisecondsToWait = 1000;
-      setTimeout(function () {
-        alert(responseData.error);
-      }, millisecondsToWait);
-    }
-    else{
-      setTimeout(function () {
-        const [userId,fName,lName] = responseData;
-        if(userId==="623959c75a32210734e0f26e"){
-        setuserInfo({userId,fName,lName});
-        navigate('/homepage');
-        }
-        else{
-          setuserInfo({userId,fName,lName});
-          navigate('/allframes');
-        }
-      }, millisecondsToWait);
-    }
-    
-  } 
-    catch (error) {
+      if (responseData.error) {
+        var millisecondsToWait = 1000;
+        setTimeout(function () {
+          alert(responseData.error);
+        }, millisecondsToWait);
+      } else {
+        setTimeout(function () {
+          const [userId, fName, lName, votedQueries] = responseData;
+          if (userId === "623959c75a32210734e0f26e") {
+            setuserInfo({ userId, fName, lName, votedQueries });
+            navigate("/homepage");
+          } else {
+            setuserInfo({ userId, fName, lName, votedQueries });
+            navigate("/allframes");
+          }
+        }, millisecondsToWait);
+      }
+    } catch (error) {
       console.log(error);
     }
   };
-
 
   const handleInput = (e) => {
     //checking of imput is here to pe written
@@ -61,7 +55,7 @@ var Login = () => {
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
   };
-  
+
   // function req() {
   //   navigate("/homepage");
   // }

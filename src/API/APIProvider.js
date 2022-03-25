@@ -26,20 +26,24 @@ export const APIProvider = (props) => {
       totalVotes: 192,
     },
   ]);
-  const [userInfo, setuserInfo] = useState({userId:"",fName:" ",lName:" ",querName:[]});
+  const [userInfo, setuserInfo] = useState({ userId: "", fName: " ", lName: " ", querName: [] });
+  // console.log(userInfo.userId);
+
   const fetchFunction = async () => {
     try {
       const done = await fetch("http://localhost:3000/getquery");
       const data = await done.json();
-      console.log({ data });
-      setVote([...data, ...vote]);
+      setTimeout(() => {
+        setVote([...data]);
+        // console.log(vote);
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
     fetchFunction();
   }, []);
-
-  return <APIcontext.Provider value={{vote:[vote, setVote],userInfos:[userInfo, setuserInfo]}}>{props.children}</APIcontext.Provider>;
+  return <APIcontext.Provider value={{ vote: [vote, setVote], userInfos: [userInfo, setuserInfo] }}>{props.children}</APIcontext.Provider>;
 };

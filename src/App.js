@@ -69,12 +69,12 @@ function App() {
     <div className="background">
       <APIProvider>
         <Routes>
-          <Route path="/reg" exact element={<Reg />} />          
+          <Route path="/reg" exact element={<Reg />} />
           <Route path="/" element={<Login />} />
-          <Route path="/homepage" element={<Ahomepage />} />
+          <Route path="/homepage" element={<Ahomepage admin={true} />} />
           <Route path="/createquery" element={<CreateQuery />} />
           <Route path="/forgotpass" element={<ForgotPass />} />
-          <Route path="/allframes" element={<Vote votes={ballot} setVote={setVote} />} />
+          <Route path="/allframes" element={<Ahomepage admin={false} />} />
         </Routes>
       </APIProvider>
     </div>
@@ -82,3 +82,6 @@ function App() {
 }
 
 export default App;
+{
+  /* <Vote votes={ballot} setVote={setVote} /> */
+}

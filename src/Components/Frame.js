@@ -1,7 +1,5 @@
 import "./framestyle.css";
 import "../Pages/Ahomepage.css";
-// import Button from "../UI/Button";
-// import ProgressBar from "react-bootstrap/ProgressBar";
 import Container from "@mui/material/Container";
 export const Frame = ({ vote, setVote }) => {
   var sum = 0;
@@ -13,7 +11,6 @@ export const Frame = ({ vote, setVote }) => {
   // var handleSubmit = (e) => {
   //   e.preventDefault();
   // }
-
   return (
     <Container className="single-frame Ahomepage_form inner_form">
       <h3 className="frame-query">{vote.query}</h3>
@@ -32,7 +29,7 @@ export const Frame = ({ vote, setVote }) => {
               )}
 
               <h3 className="frame-query" style={{ fontSize: "32px" }}>
-                {opt[0]}{" "}
+                {opt[0]}
               </h3>
               <br></br>
             </div>

@@ -41,9 +41,14 @@
   font-weight: 500;
 }
 .percent_name_wrap {
-  width: 21%;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+.percent_name_wrap input{
+  margin-top: -1%!important;
+  margin-right: 2%;
 }
 .inline-progress-bar {
   color: #40e0d0;
