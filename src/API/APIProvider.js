@@ -31,7 +31,7 @@ export const APIProvider = (props) => {
 
   const fetchFunction = async () => {
     try {
-      const done = await fetch("http://localhost:3000/getquery");
+      const done = await fetch("https://ballotdb.herokuapp.com/getquery");
       const data = await done.json();
       setTimeout(() => {
         setVote([...data]);

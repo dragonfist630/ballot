@@ -13,7 +13,6 @@ const Ahomepage = (props) => {
   const [frame, updateFrame] = vote;
   const [voted, updatevoted] = useState([]);
   const [voteFrame, setvoteFrame] = useState([]);
-
   const fetchFunction = async (id) => {
     var voteChecked = document.querySelector('input[name="options"]:checked').value;
     const requestOptions = {
@@ -23,7 +22,7 @@ const Ahomepage = (props) => {
       body: JSON.stringify({ userId: userInfo.userId, queryName: id, optionName: voteChecked }),
     };
     try {
-      const done = await fetch("http://localhost:3000/voteQueries", requestOptions);
+      const done = await fetch("https://ballotdb.herokuapp.com/voteQueries", requestOptions);
       const data = await done.json();
       var responseData = data;
       var millisecondsToWait = 1000;
@@ -33,7 +32,7 @@ const Ahomepage = (props) => {
         }, millisecondsToWait);
       } else {
         setTimeout(function () {
-          alert(responseData.message);          
+          alert(responseData.message);
         }, millisecondsToWait);
       }
     } catch (error) {
@@ -48,26 +47,30 @@ const Ahomepage = (props) => {
       body: JSON.stringify({ myId: temp }),
     };
     try {
-      const done = await fetch("http://localhost:3000/getvotedquery", requestOptions);
+      const done = await fetch("https://ballotdb.herokuapp.com/getvotedquery", requestOptions);
       const data = await done.json();
-      setTimeout(function () {
-        updatevoted(data);
-        // addvotedFrames();
+      setTimeout(() => {
+        updatevoted([...data]);
+        console.log("When we get data from API", voted, data);
+        addvotedFrames();
       }, 1000);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
-    console.log("Fetch function should be running.")
+    fetchcastedVotes();
+    console.log("Fetch function should be running.", voted);
     fetchcastedVotes();
   },[]);
+
   const handleSubmit = (id) => {
-    fetchFunction(id);
+    // fetchFunction(id);
     fetchcastedVotes();
     console.log(voted);
   };
-  
+
   var newRecords = [];
   const removeFrame = (id) => {
     const newRecord = frame.filter((currElem) => {
@@ -76,23 +79,23 @@ const Ahomepage = (props) => {
     updateFrame(newRecord);
   };
   const addvotedFrames = () => {
-    console.log("This is inside addvoteFrames",voted, frame);
+    console.log("This is inside addvoteFrames", voted, frame);
     for (let j = 0; j < voted.length; j++) {
       for (let i = 0; i < frame.length; i++) {
-        if (frame[i]._id === voted[j]){
+        if (frame[i]._id === voted[j]) {
           newRecords.push(frame[i]);
-          console.log("This is inside the fun",newRecords);
-          setvoteFrame(newRecords);
+          setvoteFrame([...newRecords]);
+          console.log("This is inside the fun", voteFrame);
           removeFrame(frame[i]._id);
           break;
         }
       }
     }
   };
-  useEffect(()=>{
-  addvotedFrames();  
-  console.log(voteFrame);
-},[]);
+  //   useEffect(()=>{
+  //   addvotedFrames();
+  //   console.log("THis is in useEffect",voteFrame);
+  // },[]);
   return (
     <>
       <Nav logedin="true" firstName={userInfo.fName} lastName={userInfo.lName} />

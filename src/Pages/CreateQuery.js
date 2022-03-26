@@ -28,7 +28,7 @@ const CreateQuery = () => {
       body: JSON.stringify({ ...Query }),
     };
     try {
-      const done = await fetch("http://localhost:3000/querys", requestOptions);
+      const done = await fetch("https://ballotdb.herokuapp.com/querys", requestOptions);
       const data = await done.json();
       if (data.message) {
         alert(data.message);

@@ -25,7 +25,7 @@ var Reg = () => {
       body: JSON.stringify({ ...userreg }),
     };
     try {
-      const done = await fetch("http://localhost:3000/reg", requestOptions);
+      const done = await fetch("https://ballotdb.herokuapp.com/reg", requestOptions);
       const data = await done.json();
       var responseData = data;
       console.log({ data });
