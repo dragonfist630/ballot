@@ -16,7 +16,7 @@ var Reg = () => {
     password: "",
     c_password: "",
   });
-  
+  const [message, updatemessage] = useState("");
   const fetchFunction = async () => {
     const requestOptions = {
       mode: "cors",
@@ -32,12 +32,12 @@ var Reg = () => {
       if(responseData.error){
       var millisecondsToWait = 500;
       setTimeout(function () {
-        alert(responseData.error);
+        displayMessage(responseData.error);
       }, millisecondsToWait);
     }
     else{
       setTimeout(function () {
-        alert(responseData.message);
+        displayMessage(responseData.message);
         navigate('/');
       }, millisecondsToWait);
     }
@@ -49,12 +49,30 @@ var Reg = () => {
   };
   const [records, updaterecord] = useState([]);
 
+  const displayMessage = (m) =>{
+    updatemessage(m);
+    if(m==="Email already exists."){
+    document.querySelector('input[type="email"]').style.border = "3px solid red";
+    document.querySelector('input[type="password"]').style.border = "";
+      document.querySelector('input[placeholder="Confirm Password"]').style.border = "";  
+    updateuserreg({...userreg,emailId: ""});  
+    }
+    if(m==="Both password should match."){
+      document.querySelector('input[type="password"]').style.border = "3px solid red";
+      document.querySelector('input[placeholder="Confirm Password"]').style.border = "3px solid red";
+      document.querySelector('input[type="email"]').style.border = "";         
+    }
+  };
+
   const handleInput = (e) => {
     //checking of imput is here to pe written
+    updatemessage("");
+    document.querySelector('input[type="email"]').style.border = "";
+    document.querySelector('input[type="password"]').style.border = "";
+    document.querySelector('input[placeholder="Confirm Password"]').style.border = "";
     const name = e.target.name;
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
-    // console.log(userreg);
   };
   const onsubmit = (e) => {
     e.preventDefault();
@@ -64,9 +82,8 @@ var Reg = () => {
       const record_with_id = { ...userreg, id: new Date().getTime().toString() };
       updaterecord([...records, record_with_id]);
       fetchFunction();
-      updateuserreg({ firstName: "", lastName: "", emailId: "", password: "", c_password: "" });
     } else {
-      alert("Your confirm password didn't match your the password you have entered Above.");
+      displayMessage("Both password should match.");
     }
   };
   return (
@@ -108,6 +125,7 @@ var Reg = () => {
               name="c_password"
               // style={{c_password_error}}
             />
+            <span id="error">{message}</span>
           </div>
           <Button text="Create account" display="none" />
         </form>

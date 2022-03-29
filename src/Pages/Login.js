@@ -16,6 +16,7 @@ var Login = () => {
     emailId: "",
     password: "",
   });
+  const [message, updatemessage] = useState("");
   const fetchFunction = async () => {
     const requestOptions = {
       mode: "cors",
@@ -30,7 +31,7 @@ var Login = () => {
       if (responseData.error) {
         var millisecondsToWait = 1000;
         setTimeout(function () {
-          alert(responseData.error);
+          displayMessage(responseData.error+"!");
         }, millisecondsToWait);
       } else {
         setTimeout(function () {
@@ -48,22 +49,25 @@ var Login = () => {
       console.log(error);
     }
   };
-
+  const displayMessage = (m) =>{
+    updatemessage(m);
+    document.querySelector('input[type="email"]').style.border = "3px solid red";
+    document.querySelector('input[type="password"]').style.border = "3px solid red";
+  };
   const handleInput = (e) => {
+    updatemessage("");
+    document.querySelector('input[type="email"]').style.border = "";
+    document.querySelector('input[type="password"]').style.border = "";
     //checking of imput is here to pe written
     const name = e.target.name;
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
   };
 
-  // function req() {
-  //   navigate("/homepage");
-  // }
   const onsubmit = (e) => {
     e.preventDefault();
     fetchFunction();
     updateuserreg({ emailId: "", password: "" });
-    // req();
   };
   return (
     <>
@@ -85,6 +89,7 @@ var Login = () => {
             <Link to="/forgotpass" id="link" sx={{ color: "#0029FE", textDecoration: "none", fontSize: "1.5rem" }}>
               Forget Password?
             </Link>
+            <span id="error">{message}</span>
           </div>
           <Button text="LogIn" display="none" />
         </form>

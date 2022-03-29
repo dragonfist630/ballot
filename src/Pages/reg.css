@@ -101,3 +101,10 @@ input::placeholder {
   font-size: 1.5rem;
   margin: 0.5rem;
 }
+#error{
+  text-align: center;
+  /* text-transform: uppercase; */
+  font-weight: bolder;
+  font-size: 1.6rem;
+  color: red;
+}
