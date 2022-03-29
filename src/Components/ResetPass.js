@@ -1,4 +1,4 @@
-import { red } from "@mui/material/colors";
+// import { red } from "@mui/material/colors";
 import { useState } from "react";
 import Button from "../UI/Button";
 import '../Pages/reg.css'
@@ -15,7 +15,7 @@ export const ResetPass = ({emailId}) => {
     const pass = e.target.password.value
     const cpass = e.target.cpassword.value
 
-    if(pass == cpass){
+    if(pass === cpass){
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

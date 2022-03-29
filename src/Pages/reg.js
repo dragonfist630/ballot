@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 var Reg = () => {
   let navigate = useNavigate();
-  // const  [c_password_error, updateC_password_error] = useState("");
   const [userreg, updateuserreg] = useState({
     fistName: "",
     lastName: "",
@@ -123,7 +122,6 @@ var Reg = () => {
               value={userreg.c_password}
               onChange={handleInput}
               name="c_password"
-              // style={{c_password_error}}
             />
             <span id="error">{message}</span>
           </div>

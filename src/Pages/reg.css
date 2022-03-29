@@ -42,11 +42,8 @@ form {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  /* margin-bottom: 1.8rem; */
 }
 input {
-  /* width: 45%;
-  height: 5%; */
   background: rgb(165, 165, 165, 0.4);
   background-blend-mode: hard-light;
   border-radius: 0.625rem;
@@ -55,7 +52,6 @@ input {
   color: white;
   font-weight: 500;
   font-size: 1.5rem;
-  /* margin-right: 2rem; */
   margin-top: 1.5rem;
 }
 
@@ -73,22 +69,6 @@ input::placeholder {
   margin-bottom: 1.8rem;
   flex-wrap: wrap;
 }
-
-/* #reg_submit {
-  width: 18.125rem;
-  height: 4.25rem;
-  background: #0029fe;
-  background-blend-mode: hard-light;
-  border-radius: 3.125rem;
-  border: none;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 1.5rem;
-  line-height: 2.25rem;
-  color: white;
-  align-self: center;
-} */
 #login_input {
   margin-bottom: 3rem;
 }
@@ -103,7 +83,7 @@ input::placeholder {
 }
 #error{
   text-align: center;
-  /* text-transform: uppercase; */
+  text-transform: uppercase;
   font-weight: bolder;
   font-size: 1.6rem;
   color: red;

@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import Button from "../UI/Button";
 import { useState, useContext } from "react";
 import { APIcontext } from "../API/APIProvider";
-// import { useNavigate } from "react-router-dom";
 
 const CreateQuery = () => {
   const { vote, userInfos } = useContext(APIcontext);
@@ -85,7 +84,6 @@ const CreateQuery = () => {
           <div className="optionsButton_wrap">
             <div className="optionWrap">
               {options.map((currElem, Index) => {
-                //value={Query.optionName[Index]} name={Query.optionName[Index]}
                 return <input type="text" placeholder="Input your option here" id={Index} required autoComplete="off" name={Index} />;
               })}
             </div>

@@ -3,14 +3,13 @@ import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import Nav from "../Components/nav";
 import Container from "@mui/material/Container";
-import { useContext, useState, useEffect } from "react";
+import { useContext,useEffect } from "react";
 import { APIcontext } from "../API/APIProvider";
 
 const Ahomepage = (props) => {
   const { vote, userInfos } = useContext(APIcontext);
   const [userInfo, setuserInfo] = userInfos;
   const temp = userInfo.userId;
-
   const [frame, updateFrame] = Object.assign([], vote);
   const tempVotes = frame.slice();
   console.log("Just after transefrring votes", tempVotes);
@@ -33,15 +32,14 @@ const Ahomepage = (props) => {
         }, millisecondsToWait);
       } else {
         setTimeout(function () {
-          alert(responseData.message);
-          // fetchcastedVotes();
+          console.log(responseData.message);
         }, millisecondsToWait);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  const array = [];
+  // const array = [];
   const temparray = [];
   const fetchcastedVotes = async () => {
     const requestOptions = {
@@ -76,7 +74,6 @@ const Ahomepage = (props) => {
     console.log("After clicking submit.", temparray);
     changevoted();
     fetchFunction(id);
-    // console.log(array);
     }
   };
 
@@ -105,9 +102,6 @@ const Ahomepage = (props) => {
     updateFrame(tempVotes);
     console.log("Just after the for loop", frame);
   }
-  // setTimeout(() => {
-  //   changevoted();
-  // }, 2500);
   return (
     <>
       <Nav logedin="true" firstName={userInfo.fName} lastName={userInfo.lName} />
@@ -169,8 +163,7 @@ const Ahomepage = (props) => {
                         <button type="submit">
                         <img
                           src={require("../image/remove.png")}
-                          alt="delete"
-                          
+                          alt="delete"                          
                           width={"35.063rem"}
                           height={"35.063rem"}
                         /></button>

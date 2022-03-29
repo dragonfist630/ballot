@@ -1,7 +1,6 @@
 .Ahomepage_form {
   left: 10rem;
   top: 5%;
-  /* position: fixed; */
 }
 .Inner_container {
   width: 100%;
@@ -9,7 +8,6 @@
   margin-top: 1rem;
 }
 #Outer_container {
-  /* background-color: aqua; */
   padding: 0px !important;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -58,9 +56,7 @@
   display: flex;
   flex-direction: row;
   align-content: center!important;
-  /* background-color: blanchedalmond; */
   height: 0%;
-  /* justify-content: space-evenly; */
 }
 .checkbox span{
   color: black;
@@ -69,6 +65,8 @@
   margin: 0%;
   align-self: flex-end;
   padding-left: 1%;
+  position: relative;
+  bottom: 0;
 }
 .bottom_form {
   display: flex;
@@ -131,6 +129,8 @@
 }
 .usersPic img:nth-child(1){
     position: relative;
-    /* bottom: -0.2%!important; */
-   
+}
+button{
+  background: none;
+  border: none;
 }
