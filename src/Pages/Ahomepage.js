@@ -10,9 +10,10 @@ const Ahomepage = (props) => {
   const { vote, userInfos } = useContext(APIcontext);
   const [userInfo, setuserInfo] = userInfos;
   const temp = userInfo.userId;
-  const [frame, updateFrame] = vote;
-  const [voted, updatevoted] = useState([]);
-  const [voteFrame, setvoteFrame] = useState([]);
+
+  const [frame, updateFrame] = Object.assign([], vote);
+  const tempVotes = frame.slice();
+  console.log("Just after transefrring votes", tempVotes);
   const fetchFunction = async (id) => {
     var voteChecked = document.querySelector('input[name="options"]:checked').value;
     const requestOptions = {
@@ -33,12 +34,15 @@ const Ahomepage = (props) => {
       } else {
         setTimeout(function () {
           alert(responseData.message);
+          // fetchcastedVotes();
         }, millisecondsToWait);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  const array = [];
+  const temparray = [];
   const fetchcastedVotes = async () => {
     const requestOptions = {
       mode: "cors",
@@ -50,52 +54,55 @@ const Ahomepage = (props) => {
       const done = await fetch("https://ballotdb.herokuapp.com/getvotedquery", requestOptions);
       const data = await done.json();
       setTimeout(() => {
-        updatevoted([...data]);
-        console.log("When we get data from API", voted, data);
-        addvotedFrames();
+        temparray.push(...data);
+        console.log("When we get data from API", temparray, data);
       }, 1000);
     } catch (err) {
       console.log(err);
     }
   };
-
   useEffect(() => {
     fetchcastedVotes();
-    console.log("Fetch function should be running.", voted);
-    fetchcastedVotes();
-  },[]);
-
+    setTimeout(() => {
+      changevoted();
+    }, 2000);
+  }, []);
   const handleSubmit = (id) => {
-    // fetchFunction(id);
-    fetchcastedVotes();
-    console.log(voted);
+    temparray.push(id);
+    console.log("After clicking submit.", temparray);
+    changevoted();
+    fetchFunction(id);
+    // console.log(array);
   };
 
-  var newRecords = [];
+  var newRecord = [];
   const removeFrame = (id) => {
-    const newRecord = frame.filter((currElem) => {
+    console.log("This is inside removeFrame", id);
+    newRecord = frame.filter((currElem) => {
+      console.log("these id will be removed from frame", id);
       return currElem._id !== id;
     });
-    updateFrame(newRecord);
+    updateFrame([...newRecord]);
+    console.log("this is newRecord which is pushed in to frame", newRecord);
   };
-  const addvotedFrames = () => {
-    console.log("This is inside addvoteFrames", voted, frame);
-    for (let j = 0; j < voted.length; j++) {
-      for (let i = 0; i < frame.length; i++) {
-        if (frame[i]._id === voted[j]) {
-          newRecords.push(frame[i]);
-          setvoteFrame([...newRecords]);
-          console.log("This is inside the fun", voteFrame);
-          removeFrame(frame[i]._id);
+  function changevoted() {
+    console.log("Inside chnangevoted()",temparray);
+    for (let i = 0; i < temparray.length; i++) {
+      for (let j = 0; j < tempVotes.length; j++) {
+        if (tempVotes[j]._id === temparray[i]) {
+          const temp = { isvoted: true };
+          tempVotes[j] = Object.assign(tempVotes[j], temp);
           break;
         }
       }
     }
-  };
-  //   useEffect(()=>{
-  //   addvotedFrames();
-  //   console.log("THis is in useEffect",voteFrame);
-  // },[]);
+    console.log("Just after the for loop", tempVotes);
+    updateFrame(tempVotes);
+    console.log("Just after the for loop", frame);
+  }
+  // setTimeout(() => {
+  //   changevoted();
+  // }, 2500);
   return (
     <>
       <Nav logedin="true" firstName={userInfo.fName} lastName={userInfo.lName} />
@@ -111,7 +118,7 @@ const Ahomepage = (props) => {
             <span> </span>
           )}
           <Container className="Inner_container">
-            {frame.map((currElem) => {
+            {frame.map((currElem, index) => {
               return (
                 <form
                   onSubmit={(event) => {
@@ -126,14 +133,14 @@ const Ahomepage = (props) => {
                     return (
                       <div key={index}>
                         <div className="percent_name_wrap">
-                          {props.admin ? (
+                          {props.admin || currElem.isvoted ? (
                             <span>{currElem.value[index] !== 0 ? Math.floor((currElem.value[index] / currElem.totalVotes) * 100) : 0}%</span>
                           ) : (
                             <input type="radio" name="options" value={curr} required style={{ color: "blue", width: "30px", height: "50px" }} />
                           )}
                           <h3>{curr}</h3>
                         </div>
-                        {props.admin ? (
+                        {props.admin || currElem.isvoted ? (
                           <div className="progress p_inline_bar">
                             <div
                               className="progress-bar inline-progress-bar"
@@ -152,7 +159,6 @@ const Ahomepage = (props) => {
                   <div className="bottom_form">
                     <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
                     <div className="EditRemoveIcon_wrap">
-                      {/* <img src={require("../image/edit.png")} alt="edit" width={"35.063rem"} height={"35.063rem"} /> */}
                       {props.admin ? (
                         <img
                           src={require("../image/remove.png")}
@@ -172,37 +178,6 @@ const Ahomepage = (props) => {
               );
             })}
           </Container>
-          {/* <Container className="Inner_container">
-            {voteFrame.map((currElem) => {
-              return (
-                <div className="inner_form" key={currElem._id}>
-                  <h3>{currElem.queryName}</h3>
-                  {currElem.optionName.map((curr, index) => {
-                    return (
-                      <div key={index}>
-                        <div className="percent_name_wrap">
-                          <span>{currElem.value[index] !== 0 ? Math.floor((currElem.value[index] / currElem.totalVotes) * 100) : 0}%</span>
-                          <h3>{curr}</h3>
-                        </div>
-                        <div className="progress p_inline_bar">
-                          <div
-                            className="progress-bar inline-progress-bar"
-                            role="progressbar"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{ width: (currElem.value[index] / currElem.totalVotes) * 100 + "%" }}
-                          ></div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className="bottom_form">
-                    <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </Container> */}
         </Container>
       </div>
     </>

@@ -9,6 +9,7 @@ import { APIcontext } from "../API/APIProvider";
 const CreateQuery = () => {
   const { vote, userInfos } = useContext(APIcontext);
   const [userInfo] = userInfos;
+  const [frame, updateFrame] = Object.assign([], vote);
   const [Query, updateQuery] = useState({
     queryName: "",
     optionName: [],
@@ -44,6 +45,8 @@ const CreateQuery = () => {
   const createOption = () => {
     options.length <= 6 ? addOptions([...options, 1]) : alert("Only 6 Options are allowed!");
   };
+  var array = [];
+  array = frame.slice();
   const handleSubmit = (e) => {
     e.preventDefault();
     Query.value = [];
@@ -54,6 +57,8 @@ const CreateQuery = () => {
       Query.optionName.push(temp);
     }
     console.log(Query);
+    array.push(Query);
+    updateFrame(array);
     fetchFunction();
   };
   const homepage = ["Homepage", "/homepage"];
