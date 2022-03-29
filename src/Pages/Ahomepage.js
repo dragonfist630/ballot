@@ -68,11 +68,16 @@ const Ahomepage = (props) => {
     }, 2000);
   }, []);
   const handleSubmit = (id) => {
+    if(props.admin){
+      removeFrame(id);
+    }
+    else{
     temparray.push(id);
     console.log("After clicking submit.", temparray);
     changevoted();
     fetchFunction(id);
     // console.log(array);
+    }
   };
 
   var newRecord = [];
@@ -156,22 +161,22 @@ const Ahomepage = (props) => {
                       </div>
                     );
                   })}
+                  { props.admin || !currElem.isvoted ? (<div className="checkbox"><input type="checkbox" name="vehicle1" required/><span>Kindly check this box before submitting</span></div>) : (<span></span>)}
                   <div className="bottom_form">
                     <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
                     <div className="EditRemoveIcon_wrap">
-                      {props.admin ? (
+                      {props.admin  ? (
+                        <button type="submit">
                         <img
                           src={require("../image/remove.png")}
                           alt="delete"
-                          onClick={() => {
-                            removeFrame(currElem._id);
-                          }}
+                          
                           width={"35.063rem"}
                           height={"35.063rem"}
-                        />
-                      ) : (
+                        /></button>
+                      ) : !currElem.isvoted ? ( 
                         <Button text="Vote" display="none" />
-                      )}
+                      ): (<span></span>)}
                     </div>
                   </div>
                 </form>
@@ -185,3 +190,6 @@ const Ahomepage = (props) => {
 };
 
 export default Ahomepage;
+// onClick={() => {
+//   removeFrame(currElem._id);
+// }}

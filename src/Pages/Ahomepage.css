@@ -54,6 +54,22 @@
   color: #40e0d0;
   border-radius: 1rem;
 }
+.checkbox{
+  display: flex;
+  flex-direction: row;
+  align-content: center!important;
+  /* background-color: blanchedalmond; */
+  height: 0%;
+  /* justify-content: space-evenly; */
+}
+.checkbox span{
+  color: black;
+  font-weight: bolder;
+  height: 1%;
+  margin: 0%;
+  align-self: flex-end;
+  padding-left: 1%;
+}
 .bottom_form {
   display: flex;
   flex-direction: row;
