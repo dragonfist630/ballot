@@ -12,6 +12,7 @@ var Login = () => {
   let navigate = useNavigate();
   const { vote, userInfos } = useContext(APIcontext);
   const [userInfo, setuserInfo] = userInfos;
+  // const [frame, updateframe] = vote;
   const [userreg, updateuserreg] = useState({
     emailId: "",
     password: "",

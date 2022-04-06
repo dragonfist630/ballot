@@ -3,6 +3,7 @@ import React, { createContext, useState, useEffect } from "react";
 export const APIcontext = createContext();
 
 export const APIProvider = (props) => {
+  console.log('Just inside context API.');
   const [vote, setVote] = useState([
     // {
     //   _id: 0,
@@ -28,22 +29,23 @@ export const APIProvider = (props) => {
   ]);
   const [userInfo, setuserInfo] = useState({ userId: "", fName: " ", lName: " ", querName: [] });
   // console.log(userInfo.userId);
-
+  var frame = []
   const fetchFunction = async () => {
+    frame=[];
     try {
       const done = await fetch("https://ballotdb.herokuapp.com/getquery");
       const data = await done.json();
       setTimeout(() => {
-        setVote([...data]);
-        // console.log(vote);
+        // setVote([...data]);
+        frame.push(...data);
+        console.log("Inside the fun which fetch the frame data", frame);
       }, 1000);
     } catch (err) {
       console.log(err);
     }
   };
-
   useEffect(() => {
     fetchFunction();
   }, []);
-  return <APIcontext.Provider value={{ vote: [vote, setVote], userInfos: [userInfo, setuserInfo] }}>{props.children}</APIcontext.Provider>;
+  return <APIcontext.Provider value={{ vote: frame, userInfos: [userInfo, setuserInfo], fetchframe: fetchFunction }}>{props.children}</APIcontext.Provider>;
 };

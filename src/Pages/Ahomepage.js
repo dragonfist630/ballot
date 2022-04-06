@@ -1,18 +1,19 @@
 import "./Ahomepage.css";
+import Frame from "./Frame";
 import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import Nav from "../Components/nav";
 import Container from "@mui/material/Container";
-import { useContext,useEffect } from "react";
+import { useContext, useState, useEffect} from "react";
 import { APIcontext } from "../API/APIProvider";
 
-const Ahomepage = (props) => {
-  const { vote, userInfos } = useContext(APIcontext);
+const Ahomepage = async (props) => {
+  const { vote, userInfos, fetchframe } = useContext(APIcontext);
   const [userInfo, setuserInfo] = userInfos;
   const temp = userInfo.userId;
-  const [frame, updateFrame] = Object.assign([], vote);
-  const tempVotes = frame.slice();
-  console.log("Just after transefrring votes", tempVotes);
+  const [frame, updateFrame] = useState([]);
+  console.log("After I take frame from context API", vote);
+
   const fetchFunction = async (id) => {
     var voteChecked = document.querySelector('input[name="options"]:checked').value;
     const requestOptions = {
@@ -38,7 +39,7 @@ const Ahomepage = (props) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   // const array = [];
   const temparray = [];
   const fetchcastedVotes = async () => {
@@ -54,26 +55,29 @@ const Ahomepage = (props) => {
       setTimeout(() => {
         temparray.push(...data);
         console.log("When we get data from API", temparray, data);
+        changevoted();
       }, 1000);
     } catch (err) {
       console.log(err);
     }
-  };
-  useEffect(() => {
-    fetchcastedVotes();
+  }
+
+  useEffect( () => {
+     fetchcastedVotes();
+     fetchframe();
     setTimeout(() => {
       changevoted();
     }, 2000);
   }, []);
+
   const handleSubmit = (id) => {
-    if(props.admin){
+    if (props.admin) {
       removeFrame(id);
-    }
-    else{
-    temparray.push(id);
-    console.log("After clicking submit.", temparray);
-    changevoted();
-    fetchFunction(id);
+    } else {
+      temparray.push(id);
+      console.log("After clicking submit.", temparray);
+      changevoted();
+      fetchFunction(id);
     }
   };
 
@@ -88,19 +92,25 @@ const Ahomepage = (props) => {
     console.log("this is newRecord which is pushed in to frame", newRecord);
   };
   function changevoted() {
-    console.log("Inside chnangevoted()",temparray);
+    // updateFrame([...vote]);
+    var tempVotes = [];
+    tempVotes = frame.slice();
+    console.log("Just after transefrring votes", tempVotes);
+    console.log("Inside chnangevoted()", temparray);
     for (let i = 0; i < temparray.length; i++) {
       for (let j = 0; j < tempVotes.length; j++) {
         if (tempVotes[j]._id === temparray[i]) {
           const temp = { isvoted: true };
           tempVotes[j] = Object.assign(tempVotes[j], temp);
+          console.log("changedvoted fro loop", temparray[i]);
           break;
         }
       }
     }
     console.log("Just after the for loop", tempVotes);
     updateFrame(tempVotes);
-    console.log("Just after the for loop", frame);
+    console.log("Just after updating the frame", frame);
+    console.log("Last line of updatevote and this is castedvoteId's", temparray);
   }
   return (
     <>
@@ -116,66 +126,7 @@ const Ahomepage = (props) => {
           ) : (
             <span> </span>
           )}
-          <Container className="Inner_container">
-            {frame.map((currElem, index) => {
-              return (
-                <form
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    handleSubmit(currElem._id);
-                  }}
-                  className="inner_form"
-                  key={currElem._id}
-                >
-                  <h3>{currElem.queryName}</h3>
-                  {currElem.optionName.map((curr, index) => {
-                    return (
-                      <div key={index}>
-                        <div className="percent_name_wrap">
-                          {props.admin || currElem.isvoted ? (
-                            <span>{currElem.value[index] !== 0 ? Math.floor((currElem.value[index] / currElem.totalVotes) * 100) : 0}%</span>
-                          ) : (
-                            <input type="radio" name="options" value={curr} required style={{ color: "blue", width: "30px", height: "50px" }} />
-                          )}
-                          <h3>{curr}</h3>
-                        </div>
-                        {props.admin || currElem.isvoted ? (
-                          <div className="progress p_inline_bar">
-                            <div
-                              className="progress-bar inline-progress-bar"
-                              role="progressbar"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              style={{ width: (currElem.value[index] / currElem.totalVotes) * 100 + "%" }}
-                            ></div>
-                          </div>
-                        ) : (
-                          <span></span>
-                        )}
-                      </div>
-                    );
-                  })}
-                  { props.admin || !currElem.isvoted ? (<div className="checkbox"><input type="checkbox" name="vehicle1" required/><span>Kindly check this box before submitting</span></div>) : (<span></span>)}
-                  <div className="bottom_form">
-                    <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
-                    <div className="EditRemoveIcon_wrap">
-                      {props.admin  ? (
-                        <button type="submit">
-                        <img
-                          src={require("../image/remove.png")}
-                          alt="delete"                          
-                          width={"35.063rem"}
-                          height={"35.063rem"}
-                        /></button>
-                      ) : !currElem.isvoted ? ( 
-                        <Button text="Vote" display="none" />
-                      ): (<span></span>)}
-                    </div>
-                  </div>
-                </form>
-              );
-            })}
-          </Container>
+          <Frame/>
         </Container>
       </div>
     </>
