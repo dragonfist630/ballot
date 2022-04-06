@@ -1,7 +1,6 @@
 .Ahomepage_form {
   left: 10rem;
   top: 5%;
-  /* position: fixed; */
 }
 .Inner_container {
   width: 100%;
@@ -9,7 +8,6 @@
   margin-top: 1rem;
 }
 #Outer_container {
-  /* background-color: aqua; */
   padding: 0px !important;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -41,13 +39,34 @@
   font-weight: 500;
 }
 .percent_name_wrap {
-  width: 21%;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+.percent_name_wrap input{
+  margin-top: -1%!important;
+  margin-right: 2%;
 }
 .inline-progress-bar {
   color: #40e0d0;
   border-radius: 1rem;
+}
+.checkbox{
+  display: flex;
+  flex-direction: row;
+  align-content: center!important;
+  height: 0%;
+}
+.checkbox span{
+  color: black;
+  font-weight: bolder;
+  height: 1%;
+  margin: 0%;
+  align-self: flex-end;
+  padding-left: 1%;
+  position: relative;
+  bottom: 0;
 }
 .bottom_form {
   display: flex;
@@ -110,6 +129,8 @@
 }
 .usersPic img:nth-child(1){
     position: relative;
-    /* bottom: -0.2%!important; */
-   
+}
+button{
+  background: none;
+  border: none;
 }

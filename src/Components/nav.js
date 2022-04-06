@@ -14,7 +14,7 @@ var Nav = (props) => {
   return (
     <nav className="navbar-light fluid">
       <div className="display">
-        <div className="img-size"></div>
+        <div className="img-size"></div> 
         <span className=" header">Ballot</span>
       </div>
       {logedin ? (

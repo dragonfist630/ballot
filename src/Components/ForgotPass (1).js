@@ -4,15 +4,14 @@ import "../Pages/reg";
 import Nav from "./nav";
 import Upperpart from "./Upper_part";
 import Container from "@mui/material/Container";
-// import { Link } from "react-router-dom";
 import { useState } from "react";
 import "../UI/Button.css";
-// import {  useNavigate } from "react-router-dom";
 
 var ForgotPass = () => {
   const [otpsends, setotpsends] = useState(false);
   const [verifyotp, setverifyotp] = useState(false);
   const [otp, setotp] = useState(0);
+  const [emailId, setemailId] = useState("");
 
   const [userreg, updateuserreg] = useState({
     email: "",
@@ -24,20 +23,10 @@ var ForgotPass = () => {
     const value = e.target.value;
     updateuserreg({ ...userreg, [name]: value });
   };
-  // let navigate = useNavigate();
-  // function req() {
-  //   navigate("/");
-  // }
-  // const onsubmit = (e) => {
-  //   e.preventDefault();
-  //   //validation part is here to be written
-  //   updateuserreg({ email: "", password: "" });
-  //   console.log(userreg);
-  //   //req();
-  // };
   const sendOtp = (givenemail) => {
     const newotp = Math.floor(Math.random() * 1000000);
     setotp(newotp);
+    setemailId(givenemail)
     console.log(otp + " == " + newotp + " " + givenemail);
     try {
       emailjs
@@ -57,7 +46,7 @@ var ForgotPass = () => {
           document.getElementById("otpbutton").style.display = "none";
         });
     } catch (error) {
-      alert("something went wrong ", error);
+      alert("not able to send OTP check email and try again ", error);
     }
   };
 
@@ -93,7 +82,7 @@ var ForgotPass = () => {
             {otpsends ? (
               <>
                 {verifyotp ? (
-                  <ResetPass />
+                  <ResetPass  emailId = {emailId} />
                 ) : (
                   <div style={{ display: "flex", flexDirection: "column" }} id="otpbox">
                     <input
