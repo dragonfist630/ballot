@@ -11,6 +11,7 @@ var Nav = (props) => {
   props.firstName === undefined ? (firstName = " ") : (firstName = props.firstName);
   props.lastName === undefined ? (lastName = " ") : (lastName = props.lastName);
   var pp = firstName.split("")[0] + lastName.split("")[0];
+  const PP = pp.toUpperCase();
   return (
     <nav className="navbar-light fluid">
       <div className="display">
@@ -26,9 +27,9 @@ var Nav = (props) => {
           ) : (
             <span></span>
           )}
-          <span id="profile_pic">{pp}</span>
+          <span id="profile_pic">{PP}</span>
           <Link to={"/"} className="logoutSpan">
-            <span>logout</span>
+            <span>Logout</span>
           </Link>
         </div>
       ) : (

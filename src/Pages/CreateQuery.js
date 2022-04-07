@@ -4,9 +4,11 @@ import Container from "@mui/material/Container";
 import Button from "../UI/Button";
 import { useState, useContext } from "react";
 import { APIcontext } from "../API/APIProvider";
+import {useNavigate} from "react-router-dom";
 
 const CreateQuery = () => {
   const { vote, userInfos } = useContext(APIcontext);
+  let navigate = useNavigate();
   const fName=window.localStorage.getItem('fName');
   const [frame, updateFrame] = Object.assign([], vote);
   const [Query, updateQuery] = useState({
@@ -31,7 +33,8 @@ const CreateQuery = () => {
       const done = await fetch("https://ballotdb.herokuapp.com/querys", requestOptions);
       const data = await done.json();
       if (data.message) {
-        alert(data.message);
+        // alert(data.message);
+        navigate('/homepage');
       }
       if (data.error) {
         alert(data.error);

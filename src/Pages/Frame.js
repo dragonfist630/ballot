@@ -14,33 +14,15 @@ const Frame = (props) => {
     try {
       const done = await fetch("https://ballotdb.herokuapp.com/getquery");
       const data = await done.json();
-      setFrame(() => {
-        return [...data];
-      });
       tempVotes.push(...data);
       setTimeout(() => {
-        console.log("Inside fetchFrame just after setFrame", frame, data);
+        console.log("Inside fetchFrame just after setFrame", data);
+        changevoted();
       }, 1600);
     } catch (err) {
       console.log(err);
     }
   };
-//   const fetchcastedVotes = useCallback(async () => {
-//     const requestOptions = {
-//       mode: "cors",
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ myId: userInfo }),
-//     };
-//     try {
-//       const done = await fetch("https://ballotdb.herokuapp.com/getvotedquery", requestOptions);
-//       const data = await done.json();
-//       temparray.push(...data);
-//       console.log("When we get data from API", temparray, data);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }, [userInfo, temparray]);
   //called to send vote.
   const sendVote = useCallback(
     async (id) => {
@@ -100,18 +82,15 @@ const Frame = (props) => {
     if (props.admin) {
       removeFrame(id);
     } else {
-    //   temparray.push(id);
-    //   changevoted();
+      temparray.push(id);
+      console.log("handleSubmit(), just after temparray is updated", temparray);
+      fetchFrame();
       sendVote(id);
     }
   };
   useEffect(() => {
     console.log("Use effect has ran from frame.Js");
-    // fetchcastedVotes();
     fetchFrame();
-    setTimeout(() => {
-      changevoted();
-    }, 2000);
   }, []);
   const blankSpan = <span></span>;
   const checkBox = (
