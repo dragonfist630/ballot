@@ -38,7 +38,7 @@ const Ahomepage = (props) => {
       <Nav logedin="true" firstName={fName} lastName={lName} admin={props.admin} />
       <div className="Ahomepage_form">
         <Container id="Outer_container">
-          <Frame admin={props.admin} temparray={temparray} usercred={userId} />;
+          <Frame admin={props.admin} temparray={temparray} usercred={userId} />
         </Container>
       </div>
     </>
