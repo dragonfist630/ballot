@@ -16,9 +16,9 @@ const Frame = (props) => {
       const data = await done.json();
       tempVotes.push(...data);
       setTimeout(() => {
-        console.log("Inside fetchFrame just after setFrame", data);
+        // console.log("Inside fetchFrame ", data);
         changevoted();
-      }, 1600);
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
@@ -39,13 +39,13 @@ const Frame = (props) => {
         var responseData = data;
         var millisecondsToWait = 1000;
         if (responseData.error) {
-          setTimeout(function () {
-            alert(responseData.error);
-          }, millisecondsToWait);
+          // setTimeout(function () {
+          alert(responseData.error);
+          // }, millisecondsToWait);
         } else {
-          setTimeout(function () {
-            alert(responseData.message);
-          }, millisecondsToWait);
+          // setTimeout(function () {
+          // alert(responseData.message);
+          // }, millisecondsToWait);
         }
       } catch (error) {
         console.log(error);
@@ -63,7 +63,7 @@ const Frame = (props) => {
   };
   //changing the frame for voted
   const changevoted = useCallback(() => {
-    console.log("Inside chnangevoted()", temparray);
+    // console.log("Inside chnangevoted()", temparray);
     for (let i = 0; i < temparray.length; i++) {
       for (let j = 0; j < tempVotes.length; j++) {
         if (tempVotes[j]._id === temparray[i]) {
@@ -73,9 +73,9 @@ const Frame = (props) => {
         }
       }
     }
-    console.log("Just after the for loop", tempVotes);
-    setFrame(tempVotes);
-    console.log("Just after the for loop", frame);
+    // console.log("Just after the for loop", tempVotes);
+    setFrame((preState) => (preState = tempVotes));
+    // console.log("Just after the for loop", frame);
   }, [tempVotes, temparray]);
   // trigers after vote is submitted.
   const handleSubmit = (id) => {
@@ -83,13 +83,13 @@ const Frame = (props) => {
       removeFrame(id);
     } else {
       temparray.push(id);
-      console.log("handleSubmit(), just after temparray is updated", temparray);
+      // console.log("handleSubmit(), just after temparray is updated", temparray);
       fetchFrame();
       sendVote(id);
     }
   };
   useEffect(() => {
-    console.log("Use effect has ran from frame.Js");
+    // console.log("Use effect has ran from frame.Js");
     fetchFrame();
   }, []);
   const blankSpan = <span></span>;
@@ -105,7 +105,7 @@ const Frame = (props) => {
     </button>
   );
   return (
-    <Container className="Inner_container">
+    <Container >
       {frame.map((currElem) => {
         return (
           <form
@@ -148,7 +148,7 @@ const Frame = (props) => {
             <div className="bottom_form">
               <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
               <div className="EditRemoveIcon_wrap">
-                {props.admin ? deleteButton : !currElem.isvoted ? <Button text="Vote" display="none" /> : blankSpan}
+                {props.admin ? deleteButton : !currElem.isvoted ? <Button text="Vote" display="none" width="15rem" /> : blankSpan}
               </div>
             </div>
           </form>

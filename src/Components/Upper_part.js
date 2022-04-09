@@ -11,7 +11,6 @@ const Upperpart = (props) => {
         sx={{
           fontFamily: "Poppins",
           fontSize: "4.5rem",
-          color: "white",
           fontWeight: "700",
         }}
       >
@@ -30,18 +29,17 @@ const Upperpart = (props) => {
         </Typography>
       </Typography>
       <Typography
+        id="bottomWhitepart"
         variant="span"
         sx={{
           fontFamily: "Poppins",
           fontSize: "1.5rem",
           fontWeight: "light",
-          color: "white",
           lineHeight: "3.25rem",
         }}
       >
         {props.bottom_heading}
         <Link  to={props.href} sx={{ color: "#0029FE"}} style={{ textDecoration: 'none' }}>
-          {" "}
          {props.link} 
         </Link>
       </Typography>

@@ -27,18 +27,18 @@ var Reg = () => {
       const done = await fetch("https://ballotdb.herokuapp.com/reg", requestOptions);
       const data = await done.json();
       var responseData = data;
-      console.log({ data });
+      // console.log({ data });
       if(responseData.error){
-      var millisecondsToWait = 500;
-      setTimeout(function () {
+      // var millisecondsToWait = 500;
+      // setTimeout(function () {
         displayMessage(responseData.error);
-      }, millisecondsToWait);
+      // }, millisecondsToWait);
     }
     else{
-      setTimeout(function () {
+      // setTimeout(function () {
         displayMessage(responseData.message);
         navigate('/');
-      }, millisecondsToWait);
+      // }, millisecondsToWait);
     }
     
   } 
@@ -125,7 +125,7 @@ var Reg = () => {
             />
             <span id="error">{message}</span>
           </div>
-          <Button text="Create account" display="none" />
+          <Button text="Create account" display="none" className="credButton"  />
         </form>
       </Container>
     </>

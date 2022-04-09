@@ -8,8 +8,7 @@ import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 var Login = () => {
-  let navigate = useNavigate();
-  
+  let navigate = useNavigate();  
   const [userreg, updateuserreg] = useState({
     emailId: "",
     password: "",
@@ -27,12 +26,12 @@ var Login = () => {
       const data = await done.json();
       var responseData = data;
       if (responseData.error) {
-        var millisecondsToWait = 1000;
-        setTimeout(function () {
+        // var millisecondsToWait = 1000;
+        // setTimeout(function () {
           displayMessage(responseData.error+"!");
-        }, millisecondsToWait);
+        // }, millisecondsToWait);
       } else {
-        setTimeout(function () {
+        // setTimeout(function () {
           const [userId, fName, lName] = responseData;
           if (userId === "623959c75a32210734e0f26e") {
             window.localStorage.setItem("userId",userId);
@@ -45,7 +44,7 @@ var Login = () => {
             window.localStorage.setItem("lName",lName);
             navigate("/allframes");
           }
-        }, millisecondsToWait);
+        // }, millisecondsToWait);
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +92,7 @@ var Login = () => {
             </Link>
             <span id="error">{message}</span>
           </div>
-          <Button text="LogIn" display="none" />
+          <Button text="LogIn" display="none" className="credButton" />
         </form>
       </Container>
     </>

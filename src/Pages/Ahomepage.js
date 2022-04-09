@@ -21,32 +21,23 @@ const Ahomepage = (props) => {
     try {
       const done = await fetch("https://ballotdb.herokuapp.com/getvotedquery", requestOptions);
       const data = await done.json();
-      setTimeout(() => {
+      //setTimeout(() => {
         temparray.push(...data);
-        console.log("When we get data from API", temparray, data);
-      }, 1000);
+        // console.log("When we get data from API", temparray, data);
+      // }, 1000);
     } catch (err) {
       console.log(err);
     }
   }, [userId, temparray]);
-  useEffect(() => {
-    fetchcastedVotes();
-    console.log("useEffect has ran from Ahomepage.js");
+  useEffect(async() => {
+    // console.log("useEffect has ran from Ahomepage.js");
+    await fetchcastedVotes();
   }, [fetchcastedVotes]);
   return (
     <>
-      <Nav logedin="true" firstName={fName} lastName={lName} />
+      <Nav logedin="true" firstName={fName} lastName={lName} admin={props.admin} />
       <div className="Ahomepage_form">
-        <Container className="reg" id="Outer_container">
-          {props.admin ? (
-            <div id="add_frame">
-              <Link to="/createquery">
-                <Button text="Add frame" display="inline" />
-              </Link>
-            </div>
-          ) : (
-            <span> </span>
-          )}
+        <Container id="Outer_container">
           <Frame admin={props.admin} temparray={temparray} usercred={userId} />;
         </Container>
       </div>

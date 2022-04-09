@@ -1,33 +1,27 @@
 .reg {
-  float: left;
   width: 65%;
   height: 65%;
   margin-top: 3rem ;
-  margin-left: 1.5rem!important;
   display: flex;
   flex-direction: column;
+  justify-content: center!important;
+  align-items: center;
   flex-wrap: wrap;
   position: relative;
-  top: 5%;
 }
 .lgin{
   margin-top: 5rem;
 }
-p {
+.reg>p {
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  color: white;
   text-align: start;
   margin: 0rem;
   width: 41.231%;
   font-style: normal;
-  font-weight: bold;
   font-size: 2.25rem;
+  font-weight: bold;
   line-height: 3.375rem;
-}
-span {
-  font-size: 1rem;
-  color: white;
 }
 form {
   position: relative;
@@ -44,19 +38,15 @@ form {
   flex-wrap: wrap;
 }
 input {
-  background: rgb(165, 165, 165, 0.4);
   background-blend-mode: hard-light;
   border-radius: 0.625rem;
   padding: 1.5rem;
-  border: none;
-  color: white;
   font-weight: 500;
   font-size: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 3%;
 }
 
 input::placeholder {
-  color: white;
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;

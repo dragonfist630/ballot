@@ -10,6 +10,7 @@ const CreateQuery = () => {
   const { vote, userInfos } = useContext(APIcontext);
   let navigate = useNavigate();
   const fName=window.localStorage.getItem('fName');
+  const lName=window.localStorage.getItem('lName');
   const [frame, updateFrame] = Object.assign([], vote);
   const [Query, updateQuery] = useState({
     queryName: "",
@@ -21,7 +22,7 @@ const CreateQuery = () => {
     const name = e.target.name;
     const value = e.target.value;
     updateQuery({ ...Query, [name]: value });
-    console.log(Query);
+    // console.log(Query);
   };
   const fetchFunction = async () => {
     const requestOptions = {
@@ -44,8 +45,10 @@ const CreateQuery = () => {
     }
   };
   const [options, addOptions] = useState([1, 2]);
-  const createOption = () => {
-    options.length <= 6 ? addOptions([...options, 1]) : alert("Only 6 Options are allowed!");
+  let [message, setmessage] = useState(false);
+  const createOption = (e) => {
+    e.preventDefault();
+    options.length < 6 ? addOptions([...options, 1]) : setmessage(true);
   };
   var array = [];
   array = frame.slice();
@@ -58,7 +61,7 @@ const CreateQuery = () => {
       Query.value.push(0);
       Query.optionName.push(temp);
     }
-    console.log(Query);
+    // console.log(Query);
     array.push(Query);
     updateFrame(array);
     fetchFunction();
@@ -66,7 +69,7 @@ const CreateQuery = () => {
   const homepage = ["Homepage", "/homepage"];
   return (
     <>
-      <Nav logedin="true" firstName={fName} homepage={homepage} />
+      <Nav logedin="true" firstName={fName} lastName={lName} homepage={homepage} />
       <Container className="createQuery_wrap">
         <form onSubmit={handleSubmit} className="createQuery_form">
           <p>
@@ -83,6 +86,7 @@ const CreateQuery = () => {
           />
           <p>
             Options<span>(150 characters only!)</span>
+          {message && <span style={{color:"red", fontSize:"2rem"}}>*Only 6 options are allowed*</span>}
           </p>
           <div className="optionsButton_wrap">
             <div className="optionWrap">
@@ -91,11 +95,11 @@ const CreateQuery = () => {
               })}
             </div>
             <div onClick={createOption} id="buttonWrap">
-              <Button text="Options" />
+              <Button text="Options"  width="16rem" />
             </div>
           </div>
           <div className="submitButton">
-            <Button display="none" text="Submit" />
+            <Button display="none" text="Submit"  />
           </div>
         </form>
       </Container>

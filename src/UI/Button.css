@@ -1,6 +1,6 @@
+
 .reg_submit {
-    width: 18.125rem;
-    height: 4.25rem;
+    padding: 1%;
     background: #0029fe;
     background-blend-mode: hard-light;
     border-radius: 3.125rem;
@@ -12,6 +12,7 @@
     line-height: 2.25rem;
     color: white;
     align-self: center;
+    margin-bottom: 2%;
   }
   img{
     margin-bottom: 0.2rem;

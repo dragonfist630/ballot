@@ -7,16 +7,11 @@
   mix-blend-mode: normal;
   width: 100vw;
   height: 100vh;
-  padding: 1.4rem 2.5rem;
+  padding-bottom: 1.4rem;
   overflow-y: scroll;
+  display: grid;
+  place-items: center;
 }
-/* .container_wrap{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center!important;
-  align-items: center!important;
-} */
 ::-webkit-scrollbar {
   width: 0.063rem;
 }
@@ -35,33 +30,144 @@
 }
 
 @media (max-width: 264px) {
+  /* really really small device ( 264 and below) */
   html {
-    font-size: 40% !important;
+    font-size: 40%;
   }
 }
 @media (max-width: 304px) {
+  /* small devices like galaxy fold ( 304px and below)*/
   html {
-    font-size: 50% !important;
+    font-size: 10%;
   }
 }
 @media (max-width: 468px) {
+  /*small phones ( 468px and below)*/
   html {
-    font-size: 50% !important;
+    font-size: 40%;
   }
-  .reg {
-    width: 100vw!important;
-    left: 0!important;
+  .Initals>input{
+    width: 100%!important;
+  }
+  .submitButton {
+    display: flex;
+    justify-content: center;
+  }
+  .optionWrap {
+    width: 100%!important;
+  }
+  .reg>input{
+    width: 100%;
+  }
+  .optionsButton_wrap {
+    flex-direction: column;
+  }
+  #imgSpan_wrap {
+    width: 50%;
   }
 }
 @media (max-width: 768px) {
+  /* Normal phones or tabs devices ( 768 and below) */
   html {
-    font-size: 70%;
+    font-size: 65%!important;
+  }
+  .background {
+    background: none;
+  }
+  .header,
+  .logoutSpan > span,
+  .logoutSpan,
+  .reg>p,
+  #bottomWhitepart,
+  .reg>h3,
+  p,
+  input,
+  input::placeholder {
+    color: black ;
+  }
+  .Initals>input{
+    width: 45%;
+  }
+  .reg>p{
+    width: 100%!important;
+  }
+  .reg>h3{
+    font-size: 2.9rem;
+  }
+  input {
+    border: 1px solid black ;
+    background: none ;
+    margin-top: 0.3%;
+  }
+  .reg form,
+  .credSubmit {
+    width: 100%;
+  }
+  
+  .reg_submit {
+    margin-bottom: 2%;
+  }
+  .inner_form {
+    border: 2px solid black;
+  }
+  .add_frame > a > button {
+    width: 50%;
+    font-size: 1.2rem;
+  }
+  #imgSpan_wrap {
+    width: 50%;
+  }
+  #imgSpan_wrap > button {
+    margin-left: 0.5%;
   }
 }
-@media (min-width: 769px) and (max-width: 1119px) {
+@media (min-width: 769px) {
+  .header,
+  .logoutSpan > span,
+  .logoutSpan,
+  .reg>p,
+  .reg>h3,
+  #bottomWhitepart,
+  p,
+  input,
+  input::placeholder {
+    color: white;
+  }
+  input {
+    border: none;
+    background: rgb(165, 165, 165, 0.4);
+    margin-top: 3%;
+  }
+  .reg > input,
+  .reg form {
+    width: 60%;
+  }
+  .inner_form {
+    border: none;
+  }
+  #imgSpan_wrap {
+     width: 30%;
+  }
+  .optionsButton_wrap{
+    flex-direction: row;
+  }
+  
+}
+@media (min-width: 769px) and (max-width: 1120px) {
+  /*Ipad  from 769 to 1023*/
+  html {
+    font-size: 70%!important;
+  }
+  .submitButton {
+    margin-bottom: 2%!important;
+  }
 }
 @media (min-width: 1120px) {
+  /*Desktop and Laptops (from 1120 to above)*/
   html {
-    font-size: 90%;
+    font-size: 100%;
+  }
+  .submitButton {
+    margin-bottom: 2%!important;
   }
 }
