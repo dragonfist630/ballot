@@ -11,6 +11,8 @@
   overflow-y: scroll;
   display: grid;
   place-items: center;
+  scrollbar-color: #35353b;
+  scrollbar-width: none;
 }
 ::-webkit-scrollbar {
   width: 0.063rem;

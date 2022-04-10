@@ -23,7 +23,7 @@ const Ahomepage = (props) => {
       const data = await done.json();
       //setTimeout(() => {
         temparray.push(...data);
-        // console.log("When we get data from API", temparray, data);
+        // console.log("Got voted data by user, temparray= , data=", temparray, data);
       // }, 1000);
     } catch (err) {
       console.log(err);

@@ -63,7 +63,7 @@ const Frame = (props) => {
   };
   //changing the frame for voted
   const changevoted = useCallback(() => {
-    // console.log("Inside chnangevoted()", temparray);
+    // console.log("Inside chnangevoted() temparray", temparray);
     for (let i = 0; i < temparray.length; i++) {
       for (let j = 0; j < tempVotes.length; j++) {
         if (tempVotes[j]._id === temparray[i]) {
@@ -73,9 +73,9 @@ const Frame = (props) => {
         }
       }
     }
-    // console.log("Just after the for loop", tempVotes);
+    // console.log("Before state change tempVotes=", tempVotes);
     setFrame((preState) => (preState = tempVotes));
-    // console.log("Just after the for loop", frame);
+    // console.log("After state change frame=", frame);
   }, [tempVotes, temparray]);
   // trigers after vote is submitted.
   const handleSubmit = (id) => {
