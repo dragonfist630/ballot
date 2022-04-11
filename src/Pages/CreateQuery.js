@@ -2,29 +2,18 @@ import Nav from "../Components/nav";
 import "./CreateQuery.css";
 import Container from "@mui/material/Container";
 import Button from "../UI/Button";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { APIcontext } from "../API/APIProvider";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CreateQuery = () => {
-  const { vote, userInfos } = useContext(APIcontext);
+  const { funcs, object } = useContext(APIcontext);
+  const queryName = useRef();
+  const optionArray = useRef([]);
   let navigate = useNavigate();
-  const fName=window.localStorage.getItem('fName');
-  const lName=window.localStorage.getItem('lName');
-  const [frame, updateFrame] = Object.assign([], vote);
-  const [Query, updateQuery] = useState({
-    queryName: "",
-    optionName: [],
-    value: [],
-    totalVotes: 0,
-  });
-  const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    updateQuery({ ...Query, [name]: value });
-    // console.log(Query);
-  };
-  const fetchFunction = async () => {
+  const fName = window.localStorage.getItem("fName");
+  const lName = window.localStorage.getItem("lName");
+  const fetchFunction = async (Query) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,8 +23,8 @@ const CreateQuery = () => {
       const done = await fetch("https://ballotdb.herokuapp.com/querys", requestOptions);
       const data = await done.json();
       if (data.message) {
-        // alert(data.message);
-        navigate('/homepage');
+        // console.log("This is inside fetchfunction",requestOptions.body);
+        navigate("/homepage");
       }
       if (data.error) {
         alert(data.error);
@@ -44,28 +33,81 @@ const CreateQuery = () => {
       alert(err);
     }
   };
-  const [options, addOptions] = useState([1, 2]);
+  const editFrame = async(Query) =>{
+    const editObject = {
+      mode: "cors",
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({...Query}),
+    };
+    try{
+      const data = await fetch("https://ballotdb.herokuapp.com/editQuery",editObject)
+      const response = await data.json();
+      // console.log("This is sent to DB,",editObject.body);
+      if(response.error){
+        console.log(response.error);
+      }
+      if(response.message){
+        console.log(response.message);
+        navigate('/homepage');
+      }
+    }catch(error){
+      console.log(error)
+    }
+  };
+  const [options, addOptions] = useState([0, 1]);
   let [message, setmessage] = useState(false);
   const createOption = (e) => {
-    e.preventDefault();
-    options.length < 6 ? addOptions([...options, 1]) : setmessage(true);
+    if (e === undefined) {
+      options.length < 6 ? addOptions((preState)=>[...options, preState.lenght]) : setmessage(true);
+    } else {
+      e.preventDefault();
+      options.length < 6 ? addOptions([...options, 1]) : setmessage(true);
+    }
   };
-  var array = [];
-  array = frame.slice();
+  var qryName = undefined;
+  const optionName = [];
+  const value = [];
+  const totalVotes = 0;
   const handleSubmit = (e) => {
     e.preventDefault();
-    Query.value = [];
-    Query.optionName = [];
+    qryName = queryName.current.value;
     for (let i = 0; i < options.length; i++) {
-      var temp = document.getElementById(i).value;
-      Query.value.push(0);
-      Query.optionName.push(temp);
+      optionName.push(document.getElementById(`${i}`).value);
+      value.push(0);
     }
-    // console.log(Query);
-    array.push(Query);
-    updateFrame(array);
-    fetchFunction();
+    if (object.id === "") {
+      const Query = { queryName: qryName, optionName: optionName, value: value, totalVotes: totalVotes };
+      // console.log(Query);
+      fetchFunction(Query);
+    }else{
+      const Query = {queryId:object.id, queryName: qryName, optionName: optionName, value: object.value};
+      // console.log("This will go for updating",Query);
+      object.queryName = "";
+      object.optionName = [];
+      object.value = [];
+      object.id = "";
+      editFrame(Query);
+    }
   };
+  const arrayforOption = [];
+  const runatStart = () => {
+    if (object.optionName.length !== 0) {
+      queryName.current.value = object.queryName;
+      for (let j = 0; j < object.optionName.length; j++) {
+        arrayforOption.push(j);
+      }
+      addOptions(arrayforOption);
+      setTimeout(() => {
+        object.optionName.map((currElem, i) => {
+          document.getElementById(i).value = currElem;
+        });
+      }, 1000);
+    }
+  };
+  useEffect(() => {
+    runatStart();
+  }, []);
   const homepage = ["Homepage", "/homepage"];
   return (
     <>
@@ -75,31 +117,23 @@ const CreateQuery = () => {
           <p>
             Query<span>(500 characters only!)</span>
           </p>
-          <input
-            type="text"
-            placeholder="Input your question here"
-            required
-            autoComplete="off"
-            value={Query.queryName}
-            name="queryName"
-            onChange={handleInput}
-          />
+          <input type="text" placeholder="Input your question here" required autoComplete="off" name="queryName" ref={queryName} />
           <p>
             Options<span>(150 characters only!)</span>
-          {message && <span style={{color:"red", fontSize:"2rem"}}>*Only 6 options are allowed*</span>}
+            {message && <span style={{ color: "red", fontSize: "2rem" }}>*Only 6 options are allowed*</span>}
           </p>
           <div className="optionsButton_wrap">
             <div className="optionWrap">
               {options.map((currElem, Index) => {
-                return <input type="text" placeholder="Input your option here" id={Index} required autoComplete="off" name={Index} />;
+                return <input type="text" placeholder="Input your option here" id={Index} required autoComplete="off" key={Index}/>;
               })}
             </div>
             <div onClick={createOption} id="buttonWrap">
-              <Button text="Options"  width="16rem" />
+              <Button text="Options" width="16rem" />
             </div>
           </div>
           <div className="submitButton">
-            <Button display="none" text="Submit"  />
+            <Button display="none" text="Submit" />
           </div>
         </form>
       </Container>

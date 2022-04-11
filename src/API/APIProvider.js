@@ -1,48 +1,16 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useCallback } from "react";
 
 export const APIcontext = createContext();
 
 export const APIProvider = (props) => {
-  const [vote, setVote] = useState([
-    // {
-    //   _id: 0,
-    //   queryName: "Which programming languages you like?",
-    //   optionName: ["Python", "Java", "Javascript", "C#"],
-    //   value: [50, 30, 82, 30],
-    //   totalVotes: 192,
-    // },
-    // {
-    //   _id: 1,
-    //   queryName: "Which Company you think is best?",
-    //   optionName: ["Google", "Oracle", "Tata", "Ford", "Infosys"],
-    //   value: [75, 65, 40, 30, 60],
-    //   totalVotes: 270,
-    // },
-    // {
-    //   _id: 2,
-    //   queryName: "Which programming languages you like?",
-    //   optionName: ["Python", "Java", "Javascript", "C#"],
-    //   value: [50, 30, 82, 30],
-    //   totalVotes: 192,
-    // },
-  ]);
-  const [userInfo, setuserInfo] = useState({ userId: "", fName: " ", lName: " ", querName: [] });
-  // console.log(userInfo.userId);
-
-  const fetchFunction = useCallback(async () => {
-    try {
-      const done = await fetch("https://ballotdb.herokuapp.com/getquery");
-      const data = await done.json();
-      setTimeout(() => {
-        setVote(()=>[...data]);
-      }, 1000);
-    } catch (err) {
-      console.log(err);
-    }
-  },[]);
-
-  useEffect(() => {
-    fetchFunction();
-  }, [fetchFunction]);
-  return <APIcontext.Provider value={{ vote: [vote, setVote], userInfos: [userInfo, setuserInfo] }}>{props.children}</APIcontext.Provider>;
+  var queryObject = {id:"",queryName:"",optionName:[],value:[]}
+  const changeQuery =useCallback( (id,name,options,value) => {
+    // console.log(id,name,options,value);
+    queryObject.id = id;
+    queryObject.queryName = name;
+    queryObject.optionName = options;
+    queryObject.value = value;
+    // console.log(queryObject);
+  },[queryObject]);
+  return <APIcontext.Provider value={{funcs:changeQuery,object:queryObject}}>{props.children}</APIcontext.Provider>;
 };

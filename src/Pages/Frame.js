@@ -1,28 +1,19 @@
 import "./Ahomepage.css";
 import Button from "../UI/Button";
 import Container from "@mui/material/Container";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
+import { APIcontext } from "../API/APIProvider";
+import {useNavigate} from "react-router-dom";
 
 const Frame = (props) => {
+  const{funcs} = useContext(APIcontext);
+  let navigate = useNavigate();
   const userInfo = props.usercred;
   const temparray = props.temparray;
   const [frame, setFrame] = useState([]);
   //creating new frame data in new variable
   var tempVotes = [];
-  //getting frame from backend
-  const fetchFrame = async () => {
-    try {
-      const done = await fetch("https://ballotdb.herokuapp.com/getquery");
-      const data = await done.json();
-      tempVotes.push(...data);
-      setTimeout(() => {
-        // console.log("Inside fetchFrame ", data);
-        changevoted();
-      }, 1000);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
   //called to send vote.
   const sendVote = useCallback(
     async (id) => {
@@ -37,7 +28,7 @@ const Frame = (props) => {
         const done = await fetch("https://ballotdb.herokuapp.com/voteQueries", requestOptions);
         const data = await done.json();
         var responseData = data;
-        var millisecondsToWait = 1000;
+        // var millisecondsToWait = 1000;
         if (responseData.error) {
           // setTimeout(function () {
           alert(responseData.error);
@@ -51,29 +42,29 @@ const Frame = (props) => {
         console.log(error);
       }
     },
-    [userInfo.userId]
+    [userInfo]
   );
-  const deleteQuery = useCallback ( async (id) =>{
+  const deleteQuery = useCallback(async (id) => {
     const deleteObject = {
-      mode:"cors",
-      method:"DELETE",
-      headers:{"Content-Type":"application/json"}, 
-      body: JSON.stringify({queryId:id}),    
+      mode: "cors",
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ queryId: id }),
     };
-    try{
-      const data = await fetch("https://ballotdb.herokuapp.com/deleteQuery",deleteObject);
-      // const response = await data.json()
-      // if(response.error){
-      //   alert(response.error);
-      // }
-      // if(response.message){
-      //   alert(response.message);
-      //   console.log("This id is deleted");
-      // }
-    }catch(error){
+    try {
+      const data = await fetch("https://ballotdb.herokuapp.com/deleteQuery", deleteObject);
+      const response = await data.json()
+      if(response.error){
+        console.log(response.error);
+      }
+      if(response.message){
+        console.log(response.message);
+        // console.log("This id is deleted");
+      }
+    } catch (error) {
       console.log(error);
     }
-  },[]);
+  }, []);
 
   //function to remove frame
   const removeFrame = (id) => {
@@ -99,6 +90,20 @@ const Frame = (props) => {
     setFrame((preState) => (preState = tempVotes));
     // console.log("After state change frame=", frame);
   }, [tempVotes, temparray]);
+  //getting frame from backend
+  const fetchFrame = useCallback( async () => {
+    try {
+      const done = await fetch("https://ballotdb.herokuapp.com/getquery");
+      const data = await done.json();
+      tempVotes.push(...data);
+      setTimeout(() => {
+        // console.log("Inside fetchFrame ", data);
+        changevoted();
+      }, 1000);
+    } catch (err) {
+      console.log(err);
+    }
+  },[tempVotes,changevoted]);
   // trigers after vote is submitted.
   const handleSubmit = (id) => {
     if (props.admin) {
@@ -110,10 +115,15 @@ const Frame = (props) => {
       sendVote(id);
     }
   };
+  const editFrame = (id,queryName,options,value) => {
+    // console.log(id,queryName,options,value);
+    funcs(id,queryName,options,value);
+    navigate('/createquery');
+  };
   useEffect(() => {
     // console.log("Use effect has ran from frame.Js");
     fetchFrame();
-  }, []);
+  }, [fetchFrame]);
   const blankSpan = <span></span>;
   const checkBox = (
     <div className="checkbox">
@@ -121,22 +131,17 @@ const Frame = (props) => {
       <span>Kindly check this box before submitting</span>
     </div>
   );
-  const deleteButton = (
-    <button type="submit">
-      <img src={require("../image/remove.png")} alt="delete" width={"35.063rem"} height={"35.063rem"} />
-    </button>
-  );
   return (
-    <Container >
-      {frame.map((currElem) => {
+    <Container>
+      {frame.map((currElem,Index) => {
         return (
           <form
             onSubmit={(event) => {
               event.preventDefault();
               handleSubmit(currElem._id);
-            }}
+             }}
             className="inner_form"
-            key={currElem._id}
+            key={Index}
           >
             <h3>{currElem.queryName}</h3>
             {currElem.optionName.map((curr, index) => {
@@ -170,7 +175,24 @@ const Frame = (props) => {
             <div className="bottom_form">
               <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
               <div className="EditRemoveIcon_wrap">
-                {props.admin ? deleteButton : !currElem.isvoted ? <Button text="Vote" display="none" width="15rem" /> : blankSpan}
+                {props.admin ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        editFrame(currElem._id,currElem.queryName,currElem.optionName,currElem.value);
+                      }}
+                    >
+                      <img src={require("../image/edit.png")} alt="edit" width={"35.063rem"} height={"35.063rem"} />
+                    </button>
+                    <button type="submit">
+                      <img src={require("../image/remove.png")} alt="delete" width={"35.063rem"} height={"35.063rem"} />
+                    </button>
+                  </>
+                ) : !currElem.isvoted ? (
+                  <Button text="Vote" display="none" width="15rem" />
+                ) : (
+                  blankSpan
+                )}
               </div>
             </div>
           </form>
