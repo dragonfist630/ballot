@@ -53,12 +53,34 @@ const Frame = (props) => {
     },
     [userInfo.userId]
   );
+  const deleteQuery = useCallback ( async (id) =>{
+    const deleteObject = {
+      mode:"cors",
+      method:"DELETE",
+      headers:{"Content-Type":"application/json"}, 
+      body: JSON.stringify({queryId:id}),    
+    };
+    try{
+      const data = await fetch("https://ballotdb.herokuapp.com/deleteQuery",deleteObject);
+      // const response = await data.json()
+      // if(response.error){
+      //   alert(response.error);
+      // }
+      // if(response.message){
+      //   alert(response.message);
+      //   console.log("This id is deleted");
+      // }
+    }catch(error){
+      console.log(error);
+    }
+  },[]);
 
   //function to remove frame
   const removeFrame = (id) => {
     const newRecord = frame.filter((currElem) => {
       return currElem._id !== id;
     });
+    deleteQuery(id);
     setFrame(() => [...newRecord]);
   };
   //changing the frame for voted
