@@ -1,7 +1,7 @@
 import "./Ahomepage.css";
 import Button from "../UI/Button";
 import Container from "@mui/material/Container";
-import { useEffect, useState, useCallback, useContext} from "react";
+import { useEffect, useState, useCallback, useContext,useMemo} from "react";
 import { APIcontext } from "../API/APIProvider";
 import {useNavigate} from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Frame = (props) => {
   const temparray = props.temparray;
   const [frame, setFrame] = useState([]);
   //creating new frame data in new variable
-  var tempVotes = [];
+  var tempVotes =[];
   
   //called to send vote.
   const sendVote = useCallback(

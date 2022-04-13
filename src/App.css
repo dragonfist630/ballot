@@ -48,17 +48,17 @@
   html {
     font-size: 40%;
   }
-  .Initals>input{
-    width: 100%!important;
+  .Initals > input {
+    width: 100% !important;
   }
   .submitButton {
     display: flex;
     justify-content: center;
   }
   .optionWrap {
-    width: 100%!important;
+    width: 100% !important;
   }
-  .reg>input{
+  .reg > input {
     width: 100%;
   }
   .optionsButton_wrap {
@@ -71,7 +71,7 @@
 @media (max-width: 768px) {
   /* Normal phones or tabs devices ( 768 and below) */
   html {
-    font-size: 65%!important;
+    font-size: 65% !important;
   }
   .background {
     background: none;
@@ -79,33 +79,34 @@
   .header,
   .logoutSpan > span,
   .logoutSpan,
-  .reg>p,
+  .reg > p,
   #bottomWhitepart,
-  .reg>h3,
+  .reg > h3,
   p,
   input,
-  input::placeholder {
-    color: black ;
+  input::placeholder,
+  .iconInputWrap button {
+    color: black;
   }
-  .Initals>input{
+  .Initals > input {
     width: 45%;
   }
-  .reg>p{
-    width: 100%!important;
+  .reg > p {
+    width: 100% !important;
   }
-  .reg>h3{
+  .reg > h3 {
     font-size: 2.9rem;
   }
   input {
-    border: 1px solid black ;
-    background: none ;
+    border: 1px solid black;
+    background: none;
     margin-top: 0.3%;
   }
   .reg form,
   .credSubmit {
     width: 100%;
   }
-  
+
   .reg_submit {
     margin-bottom: 2%;
   }
@@ -122,16 +123,23 @@
   #imgSpan_wrap > button {
     margin-left: 0.5%;
   }
+  .iconInputWrap button {
+    left: -11.9%;
+    top: 9.5%;
+    padding: 0% 1.59%;
+    background-color: white;
+  }
 }
 @media (min-width: 769px) {
   .header,
   .logoutSpan > span,
   .logoutSpan,
-  .reg>p,
-  .reg>h3,
+  .reg > p,
+  .reg > h3,
   #bottomWhitepart,
   p,
   input,
+  .iconInputWrap button,
   input::placeholder {
     color: white;
   }
@@ -148,20 +156,25 @@
     border: none;
   }
   #imgSpan_wrap {
-     width: 30%;
+    width: 30%;
   }
-  .optionsButton_wrap{
+  .optionsButton_wrap {
     flex-direction: row;
   }
-  
+  .iconInputWrap button {
+    background-color: grey;
+    left: -7%;
+    top: 10%;
+    padding: 2%;
+  }
 }
 @media (min-width: 769px) and (max-width: 1120px) {
   /*Ipad  from 769 to 1023*/
   html {
-    font-size: 70%!important;
+    font-size: 70% !important;
   }
   .submitButton {
-    margin-bottom: 2%!important;
+    margin-bottom: 2% !important;
   }
 }
 @media (min-width: 1120px) {
@@ -170,6 +183,6 @@
     font-size: 100%;
   }
   .submitButton {
-    margin-bottom: 2%!important;
+    margin-bottom: 2% !important;
   }
 }

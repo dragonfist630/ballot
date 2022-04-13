@@ -1,9 +1,9 @@
-import React, { createContext, useCallback } from "react";
+import React, { createContext, useCallback} from "react";
 
 export const APIcontext = createContext();
 
 export const APIProvider = (props) => {
-  var queryObject = {id:"",queryName:"",optionName:[],value:[]}
+  var queryObject = {id:"",queryName:"",optionName:[],value:[]};
   const changeQuery =useCallback( (id,name,options,value) => {
     // console.log(id,name,options,value);
     queryObject.id = id;
