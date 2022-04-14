@@ -5,15 +5,16 @@ import { useEffect, useState, useCallback, useContext,useMemo} from "react";
 import { APIcontext } from "../API/APIProvider";
 import {useNavigate} from "react-router-dom";
 
-const Frame = (props) => {
+const Frame = ({admin,temparray,usercred}) => {
   const{funcs} = useContext(APIcontext);
   let navigate = useNavigate();
-  const userInfo = props.usercred;
-  const temparray = props.temparray;
+  const userInfo = usercred;
+  const Temparray = temparray;
   const [frame, setFrame] = useState([]);
   //creating new frame data in new variable
-  var tempVotes =[];
-  
+  var tempVotes = useMemo(()=>[]);
+  //emptying the queryObject which is in API
+  funcs("","",[],[],"");
   //called to send vote.
   const sendVote = useCallback(
     async (id) => {
@@ -76,10 +77,10 @@ const Frame = (props) => {
   };
   //changing the frame for voted
   const changevoted = useCallback(() => {
-    // console.log("Inside chnangevoted() temparray", temparray);
-    for (let i = 0; i < temparray.length; i++) {
+    // console.log("Inside chnangevoted() Temparray", Temparray);
+    for (let i = 0; i < Temparray.length; i++) {
       for (let j = 0; j < tempVotes.length; j++) {
-        if (tempVotes[j]._id === temparray[i]) {
+        if (tempVotes[j]._id === Temparray[i]) {
           const temp = { isvoted: true };
           tempVotes[j] = Object.assign(tempVotes[j], temp);
           break;
@@ -89,7 +90,7 @@ const Frame = (props) => {
     // console.log("Before state change tempVotes=", tempVotes);
     setFrame((preState) => (preState = tempVotes));
     // console.log("After state change frame=", frame);
-  }, [tempVotes, temparray]);
+  }, [tempVotes, Temparray]);
   //getting frame from backend
   const fetchFrame = useCallback( async () => {
     try {
@@ -106,11 +107,11 @@ const Frame = (props) => {
   },[tempVotes,changevoted]);
   // trigers after vote is submitted.
   const handleSubmit = (id) => {
-    if (props.admin) {
+    if (admin) {
       removeFrame(id);
     } else {
-      temparray.push(id);
-      // console.log("handleSubmit(), just after temparray is updated", temparray);
+      Temparray.push(id);
+      // console.log("handleSubmit(), just after Temparray is updated", Temparray);
       fetchFrame();
       sendVote(id);
     }
@@ -148,14 +149,14 @@ const Frame = (props) => {
               return (
                 <div key={index}>
                   <div className="percent_name_wrap">
-                    {props.admin || currElem.isvoted ? (
+                    {admin || currElem.isvoted ? (
                       <span>{currElem.value[index] !== 0 ? Math.floor((currElem.value[index] / currElem.totalVotes) * 100) : 0}%</span>
                     ) : (
                       <input type="radio" name="options" value={curr} required style={{ color: "blue", width: "30px", height: "50px" }} />
                     )}
                     <h3>{curr}</h3>
                   </div>
-                  {props.admin || currElem.isvoted ? (
+                  {admin || currElem.isvoted ? (
                     <div className="progress p_inline_bar">
                       <div
                         className="progress-bar inline-progress-bar"
@@ -171,11 +172,11 @@ const Frame = (props) => {
                 </div>
               );
             })}
-            {props.admin || !currElem.isvoted ? checkBox : blankSpan}
+            {admin || !currElem.isvoted ? checkBox : blankSpan}
             <div className="bottom_form">
               <div className="usersPic_voteCount">Total vote: {currElem.totalVotes}</div>
               <div className="EditRemoveIcon_wrap">
-                {props.admin ? (
+                {admin ? (
                   <>
                     <button
                       onClick={() => {

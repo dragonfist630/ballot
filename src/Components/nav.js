@@ -1,24 +1,23 @@
 import "./nav.css";
 import { Link } from "react-router-dom";
 import Button from "../UI/Button";
-import { useState } from "react";
 
-var Nav = (props) => {
-  var logedin;
-  var firstName;
-  var lastName;
+var Nav = ({homepage,logedin,firstName,lastName,admin}) => {
+  var Logedin;
+  var fName;
+  var lName;
   var ishomepage = false;
   let width4Admin; 
-  if(props.admin){
+  if(admin){
     width4Admin = "55%";
   }
   const windowSize = window.innerWidth;
   // console.log(windowSize);
-  props.homepage === undefined ? (ishomepage = false) : (ishomepage = true);
-  props.logedin === undefined ? (logedin = false) : (logedin = true);
-  props.firstName === undefined ? (firstName = " ") : (firstName = props.firstName);
-  props.lastName === undefined ? (lastName = " ") : (lastName = props.lastName);
-  var pp = firstName.split("")[0] + lastName.split("")[0];
+  homepage === undefined ? (ishomepage = false) : (ishomepage = true);
+  logedin === undefined ? (Logedin = false) : (Logedin = true);
+  firstName === undefined ? (fName = " ") : (fName = firstName);
+  lastName === undefined ? (lName = " ") : (lName = lastName);
+  var pp = fName.split("")[0] + lName.split("")[0];
   const PP = pp.toUpperCase();
   const blankSpan = <span></span>
   var image="inline";
@@ -34,12 +33,12 @@ var Nav = (props) => {
         <div className="img-size"></div> 
         <span className=" header">Ballot</span>
       </div>
-      {logedin ? (
+      {Logedin ? (
         <div id="imgSpan_wrap" style={{width:width4Admin}}>
-          {props.admin ? addFrame : blankSpan}
+          {admin ? addFrame : blankSpan}
           {ishomepage ? (
-            <Link to={props.homepage[1]} className="logoutSpan">
-              {props.homepage[0]}
+            <Link to={homepage[1]} className="logoutSpan">
+              {homepage[0]}
             </Link>
           ) : blankSpan}
           <span id="profile_pic">{PP}</span>

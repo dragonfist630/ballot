@@ -85,6 +85,7 @@ var Reg = () => {
       displayMessage("Both password should match.");
     }
   };
+  
   return (
     <>
       <Nav />

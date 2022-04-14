@@ -2,10 +2,10 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-const Upperpart = (props) => {
+const Upperpart = ({top_heading,heading,bottom_heading,link,href}) => {
   return (
     <>
-      <p>{props.top_heading}</p>
+      <p>{top_heading}</p>
       <Typography
         variant="h3"
         sx={{
@@ -14,7 +14,7 @@ const Upperpart = (props) => {
           fontWeight: "700",
         }}
       >
-        {props.heading}
+        {heading}
         <Typography
           variant="span"
           sx={{
@@ -38,9 +38,9 @@ const Upperpart = (props) => {
           lineHeight: "3.25rem",
         }}
       >
-        {props.bottom_heading}
-        <Link  to={props.href} sx={{ color: "#0029FE"}} style={{ textDecoration: 'none' }}>
-         {props.link} 
+        {bottom_heading}
+        <Link  to={href} sx={{ color: "#0029FE"}} style={{ textDecoration: 'none' }}>
+         {link} 
         </Link>
       </Typography>
     </>

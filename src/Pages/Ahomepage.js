@@ -1,16 +1,14 @@
-import "./Ahomepage.css";
-import Frame from "./Frame";
-import { Link } from "react-router-dom";
-import Nav from "../Components/nav";
-import Button from "../UI/Button";
+import { useEffect, useCallback,useMemo } from "react";
 import Container from "@mui/material/Container";
-import { useEffect, useCallback } from "react";
+import Frame from "./Frame";
+import Nav from "../Components/nav";
+import "./Ahomepage.css";
 
-const Ahomepage = (props) => {
+const Ahomepage = ({admin}) => {
   const userId = window.localStorage.getItem("userId");
   const fName = window.localStorage.getItem("fName");
   const lName = window.localStorage.getItem("lName");
-  const temparray = [];
+  const temparray = useMemo(()=>[],[]);
   const fetchcastedVotes = useCallback(async () => {
     const requestOptions = {
       mode: "cors",
@@ -29,20 +27,19 @@ const Ahomepage = (props) => {
       console.log(err);
     }
   }, [userId, temparray]);
-  useEffect(async() => {
+  useEffect(() => {
     // console.log("useEffect has ran from Ahomepage.js");
-    await fetchcastedVotes();
+    fetchcastedVotes();
   }, [fetchcastedVotes]);
   return (
     <>
-      <Nav logedin="true" firstName={fName} lastName={lName} admin={props.admin} />
+      <Nav logedin="true" firstName={fName} lastName={lName} admin={admin} />
       <div className="Ahomepage_form">
         <Container id="Outer_container">
-          <Frame admin={props.admin} temparray={temparray} usercred={userId} />
+          <Frame admin={admin} temparray={temparray} usercred={userId} />
         </Container>
       </div>
     </>
   );
 };
-
 export default Ahomepage;
