@@ -65,7 +65,7 @@
     flex-direction: column;
   }
   #imgSpan_wrap {
-    width: 80%;
+    width: 55%!important;
   }
 }
 @media (max-width: 768px) {
@@ -156,7 +156,7 @@
     border: none;
   }
   #imgSpan_wrap {
-    width: 30%;
+    width: 40%!important;
   }
   .optionsButton_wrap {
     flex-direction: row;
