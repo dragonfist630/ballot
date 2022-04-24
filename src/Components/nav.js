@@ -27,6 +27,7 @@ var Nav = ({ homepage, logedin, firstName, lastName, admin }) => {
     textinButton = "+";
     Width = "4.3rem";
   } 
+  //comment
   const addFrame = (
     <div id="add_frame">
       <Link to="/createquery">
