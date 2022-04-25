@@ -18,8 +18,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/homepage" element={<Ahomepage admin={true} />} />
           <Route path="/createquery" element={<CreateQuery />} />
-          <Route path="/forgotpass" element={<ForgotPass />} />
           <Route path="/allframes" element={<Ahomepage admin={false} />} />
+          <Route path="/forgotpass" element={<ForgotPass />} />
         </Routes>
       </APIProvider>
     </div>
